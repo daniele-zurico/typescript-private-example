@@ -6,15 +6,17 @@ interface IProps {
 }
 
 interface IState {
-    open: false;
+    open: boolean;
 }
 
 class Hamburger extends React.Component<IProps, IState> {
-    private hamburgerClass = [this.props.class, classes.hamburger, this.state.open ? classes.open : null];
-
+    public state = {
+        open: false
+    }
     public render() {
+        const hamburgerClass = [this.props.class, classes.hamburger, this.state.open ? classes.open : null];
         return(
-            <div className={this.hamburgerClass.join(' ')} onClick={this.toggleMenu}>
+            <div className={hamburgerClass.join(' ')} onClick={this.toggleMenu}>
                 <span/>
                 <span/>
             </div>
@@ -22,10 +24,9 @@ class Hamburger extends React.Component<IProps, IState> {
     }
     
     private toggleMenu = () => {
-        this.setState(prevState => {
-            return {open: false};
-        });
-        
+        this.setState((prevState: IState) => {
+            return {open: !prevState.open};
+        });  
     };
 };
 

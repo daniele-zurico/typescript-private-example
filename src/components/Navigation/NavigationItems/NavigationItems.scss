@@ -6,7 +6,7 @@ li {
         text-align: center;
         padding: 14px 16px;
         text-decoration: none;
-        &::hover:not(.active) {
+        &:hover {
             transition: 1s;
             opacity: .65;
             color: white;

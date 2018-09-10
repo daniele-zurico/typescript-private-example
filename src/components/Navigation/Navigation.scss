@@ -1,40 +1,90 @@
 @import '~styles/app';
 .navigation {
-    background-color:$primary-color;
-    height: 48px;
     padding: 0 10px;
-    .navigationMenu {
-        display: none;
-    }
-    .navigationItem, .navigationMenu, .navigationLogo {
-        float: left;
-        height: 48px;
-    }
+    height: 48px;
+    background-color:$primary-color;
+    color: $text-color;
     ul {
         list-style-type: none;
-        margin: 0;
-        padding: 0;
-        overflow: hidden;
-        position: fixed;
-        top: 0;
         width: 100%;
     }
 
-    @media only screen and (max-width: 768px){
-        .navigationItem {
-            display: none;
-        }
-        .navigationMenu {
-            display: inline-block;
-        }
-        .navigationLogo {
-            width: calc(100% - 17px);
-            img {
-                margin: auto;
-                display: block;
+    &.open {
+        transition: all 0.5s ease-out;
+        height: 1024px;
+        background-color: black;
+        .navigationItems {
+            display: block;
+            width: 100%;
+            ul {
+                width: 100%;
+                padding: 0;
+                position: relative; 
+                li {
+                    float: inherit;
+                    border-bottom: 1px solid #666;
+                    &:first-child {
+                        border-top: 1px solid #666;
+                    }
+                }
             }
         }
-    } 
+    }
+    &.close {
+        transition: all 0.5s ease-out;
+        height: 48px;
+        background-color:$primary-color;
+    }
+
+    .navigationItems {
+        display: none;
+    }
+    .navigationMenu {
+        float: left;
+    }
+    .navigationLogo {
+        width: calc(100% - 17px);
+        img {
+            margin: auto;
+            display: block;
+        }
+    }
+}
+
+@media only screen and (min-width: 768px){
+    .navigation, .navigation.open, .navigation.close {
+        height: 48px;
+        background-color:$primary-color;
+        .navigationMenu {
+            display: none;
+        }
+        .navigationLogo {
+            float: left;
+            display: block;
+            width: 60px;
+        }
+        .navigationItems {
+            display: block;
+            float: left;
+            width: calc(100% - 70px);
+            ul {
+                position: fixed;
+                margin: 0;
+                padding: 0;
+                top: 0;
+                overflow: hidden;
+                float: left;
+                li {
+                    border-bottom: 0px;
+                    &:first-child {
+                        border-top: 0px;
+                    }
+                }
+                
+            }
+        }
+
+    }
 }
 
 

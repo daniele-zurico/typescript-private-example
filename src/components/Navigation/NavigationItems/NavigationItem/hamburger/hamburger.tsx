@@ -3,6 +3,7 @@ import * as classes from "./hamburger.scss";
 
 interface IProps {
     class: string;
+    toggleMenu: () => void;
 }
 
 interface IState {
@@ -26,7 +27,8 @@ class Hamburger extends React.Component<IProps, IState> {
     private toggleMenu = () => {
         this.setState((prevState: IState) => {
             return {open: !prevState.open};
-        });  
+        });
+        this.props.toggleMenu();  
     };
 };
 

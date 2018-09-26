@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as classes from './Logo.scss';
 
 interface IProps {
-    class: string;
+    class?: string;
 }
 
 const logo = (props: IProps) => {
@@ -10,7 +10,7 @@ const logo = (props: IProps) => {
     return (
         <div className={containerClass}>
             <a href="/">
-                <img className={classes.logo} src={require('styles/assets/logo.svg')}/>
+                <img className={classes.logo} src={require('styles/assets/logo.png')}/>
             </a>
         </div>
     )

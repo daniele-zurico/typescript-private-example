@@ -1,7 +1,7 @@
 @import '~styles/app';
 
 .formInput {
-    margin: 40px 0;
+    margin: 20px 0;
     width: 100%;
 
     label {
@@ -19,6 +19,7 @@
         font-size: $placeholder-font-size;
         transition: all $placeholder-transition;
         width: 100%;
+        color: white;
         cursor: text;
     }
 
@@ -31,7 +32,9 @@
         border: 0;
         border-bottom: 1px solid $input-border-color;
         transition: border-color $placeholder-transition;
+        background: inherit;
         outline: none;
+        color: white;
         padding: 0;
         margin: 0;
     }
@@ -50,5 +53,36 @@
         }
 
         border-bottom:2px solid $highlight-color;
+    }
+    .hint {
+        font-size: 12px;
+        width: 100%;
+        text-align: right;
+        color: #dedede;
+        margin-top: 2px;
+    }
+    .errorMessage {
+        font-size: 12px;
+        width: 100%;
+        text-align: left;
+        color: red;
+        margin-top: 2px;
+        position: absolute;
+        top: 88px;
+        -webkit-animation: fadein 200ms; /* Safari, Chrome and Opera > 12.1 */
+       -moz-animation: fadein 200ms; /* Firefox < 16 */
+        -ms-animation: fadein 200ms; /* Internet Explorer */
+         -o-animation: fadein 200ms; /* Opera < 12.1 */
+            animation: fadein 200ms;
+    }
+    @keyframes fadein {
+        from { 
+            opacity: 0;
+            top: 70px; 
+        }
+        to { 
+            opacity: 1;
+            top: 88px; 
+        }
     }
 }

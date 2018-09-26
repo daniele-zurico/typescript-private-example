@@ -1,0 +1,16 @@
+ButtonContainer {
+  display: flex;
+}
+form {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 85px;
+  padding: 23px;
+  display: flex;
+  flex-flow: column;
+  .ButtonContainer {
+    display: flex;
+    margin-top: 40px;
+  }
+}

@@ -24,6 +24,9 @@
     outline: none;
     cursor: pointer;
     transition: box-shadow 0.2s;
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
 
     &:hover,
     &:focus {
@@ -35,9 +38,8 @@
     }
 
     &:disabled {
-        color: rgba(0, 0, 0, 0.38);
-        background-color: rgba(0, 0, 0, 0.12);
-        box-shadow: none;
+        color: white; 
+        background-color: transparent !important;
         cursor: initial;
     }
 

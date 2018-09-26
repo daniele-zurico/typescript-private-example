@@ -4,7 +4,10 @@ import * as classes from './Button.scss';
 interface IProp {
     type?: Type,
     label: string,
-    clicked: () => void
+    class?: string,
+    disabled?: boolean,
+    isSubmit?: boolean,
+    clicked?: () => void
 };
 
 export enum Type {
@@ -15,7 +18,7 @@ export enum Type {
 }
 
 const button = (props: IProp) => {
-    const buttonClass = [classes.Button];
+    const buttonClass = [classes.Button, props.class];
     switch (props.type) {
         case Type.PRIMARY:
             buttonClass.push(classes.primary);
@@ -31,7 +34,14 @@ const button = (props: IProp) => {
             break;
     }
     return (
-        <button className={buttonClass.join(' ')} onClick={props.clicked}>{props.label}</button>
+        <button 
+            className = {buttonClass.join(' ')}
+            type = {props.isSubmit ? 'submit' : undefined}
+            onClick = {props.clicked}
+            disabled = {props.disabled}
+        >
+        {props.label}
+        </button>
     )
 }
 

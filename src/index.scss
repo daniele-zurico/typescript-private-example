@@ -5,5 +5,10 @@
 html,body {
   font-size: 17px;
   margin: 0;
+  padding: 0;
   font-family: "SF Pro Text","SF Pro Icons","Helvetica Neue","Helvetica","Arial",sans-serif;
+  #root {
+    min-height: 100vh;
+  }
 }
+

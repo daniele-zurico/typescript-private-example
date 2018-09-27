@@ -1,8 +1,8 @@
+import { isFormValid, validateElement } from 'common/util/util';
 import { Button, IElement, Input } from 'components';
 import * as React from 'react';
 import { Component } from 'react';
 import * as classes from './Form.scss';
-import { IValidation } from './IForm';
 interface IProps {
   data: IElement;
   onSubmit: (evt: React.FormEvent) => void;
@@ -22,8 +22,8 @@ class FormElements extends Component<IProps, IState> {
         id: el,
         element: {
           ...this.props.data[el],
-					valid: false,
-					touched: false
+          valid: false,
+          touched: false
         },
       });
     }
@@ -34,10 +34,7 @@ class FormElements extends Component<IProps, IState> {
     };
   }
 
-  public inputHandler = (
-    evt: React.ChangeEvent<HTMLInputElement>,
-    id: number
-  ) => {
+  public inputHandler = (evt: React.ChangeEvent<HTMLInputElement>, id: number) => {
     // Update the value of the input
     const newForm = this.state.formData.map((el: any) => {
       if (el.id === id && el.element.component !== 'button') {
@@ -46,8 +43,8 @@ class FormElements extends Component<IProps, IState> {
           element: {
             ...el.element,
             value: evt.target.value,
-						valid: validateElement(evt.target.value, el.element.validation),
-						touched: true
+            valid: validateElement(evt.target.value, el.element.validation),
+            touched: true
           },
         };
       }
@@ -69,6 +66,7 @@ class FormElements extends Component<IProps, IState> {
     const formButtons: any[] = [];
     const { formData, isValid } = this.state;
     formData.map((el: any) => {
+
       const {
         component,
         id,
@@ -78,11 +76,11 @@ class FormElements extends Component<IProps, IState> {
         value,
         errorMessage,
         label,
-				isSubmit,
-				valid,
-				touched
-			} = el.element;
-			console.log(el.element);
+        isSubmit,
+        valid,
+        touched
+      } = el.element;
+
       switch (component) {
         case 'input':
           form.push(
@@ -91,9 +89,9 @@ class FormElements extends Component<IProps, IState> {
               placeholder={placeholder ? placeholder : ''}
               type={type}
               hint={hint}
-							value={value}
-							valid = {valid}
-							touched = {touched}
+              value={value}
+              valid={valid}
+              touched={touched}
               errorMessage={errorMessage}
               onInputChange={evt => this.inputHandler(evt, el.id)}
             />
@@ -115,39 +113,12 @@ class FormElements extends Component<IProps, IState> {
     return (
       <form onSubmit={this.onSubmit}>
         {form}
-        <div className={classes.ButtonContainer}>{formButtons}</div>
+        <div className={classes.ButtonContainer}>
+          {formButtons}
+        </div>
       </form>
     );
   }
 }
 
 export default FormElements;
-
-const validateElement = (
-  value: string,
-  validationRules: IValidation
-): boolean => {
-  let isValid = true;
-  for (const validations in validationRules) {
-    switch (validations) {
-      case 'required':
-        isValid = value.trim() !== '' && isValid;
-        break;
-      case 'email':
-        const pattern = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
-        isValid = pattern.test(value) && isValid;
-        break;
-    }
-  }
-  return isValid;
-};
-
-const isFormValid = (elements: any): boolean => {
-  let isValid = true;
-  elements.map((e: any) => {
-    if (e.element.component !== 'button') {
-      isValid = e.element.valid && isValid;
-    }
-  });
-  return isValid;
-};

@@ -1,14 +1,15 @@
+import asyncComponent from 'components/HOC/AsyncComponent';
 import * as React from 'react';
 import { Redirect, Route, Switch } from 'react-router';
-import Login from './containers/Login/Login';
 
+const asyncLogin = asyncComponent(() => import('./containers/Login/Login'));
 class App extends React.Component<{}, {}> {
-  
+
   public render() {
 
     const routes = (
       <Switch>
-        <Route path="/auth" component={Login} />
+        <Route path="/auth" component={asyncLogin} />
         <Redirect to="/auth" />
       </Switch>
     );

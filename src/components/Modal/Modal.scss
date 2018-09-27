@@ -1,0 +1,87 @@
+.ModalContainer {
+    background-color: rgba(0, 0, 0, 0.68);
+    position: absolute;
+    z-index: 99999;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    opacity: 1;
+
+    &.Hide {
+        opacity: 0;
+        -webkit-animation: fadeOut 300ms;
+        /* Safari, Chrome and Opera > 12.1 */
+        -moz-animation: fadeOut 300ms;
+        /* Firefox < 16 */
+        -ms-animation: fadeOut 300ms;
+        /* Internet Explorer */
+        -o-animation: fadeOut 300ms;
+        /* Opera < 12.1 */
+        animation: fadeOut 300ms;
+    }
+
+    .ModalContent {
+        background: white;
+        width: 350px;
+        height: 200px;
+        margin: auto;
+        border-radius: 7px;
+        padding: 20px;
+        position: absolute;
+        top: calc(50% - 100px);
+        left: calc(50% - 175px);
+        -webkit-animation: fadein 900ms;
+        /* Safari, Chrome and Opera > 12.1 */
+        -moz-animation: fadein 900ms;
+        /* Firefox < 16 */
+        -ms-animation: fadein 900ms;
+        /* Internet Explorer */
+        -o-animation: fadein 900ms;
+        /* Opera < 12.1 */
+        animation: fadein 900ms;
+
+        .Close {
+            width: 25px;
+            height: 25px;
+            background-color: #3a3939;
+            border: 2px solid white;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 25px;
+            color: white;
+            float: right;
+            font-size: 10px;
+            margin-top: -29px;
+            margin-right: -29px;
+        }
+
+        @keyframes fadein {
+            0% {
+                top: -20%
+            }
+
+            50% {
+                top: calc(50% - 80px);
+            }
+
+            100% {
+                top: calc(50% - 100px);
+            }
+        }
+
+        @keyframes fadeOut {
+            from {
+                opacity: 1;
+            }
+
+            to {
+                opacity: 0;
+            }
+        }
+
+    }
+}

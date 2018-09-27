@@ -1,4 +1,4 @@
-import { FormElements } from 'components';
+import { FormElements, Modal } from 'components';
 import * as React from 'react';
 import { Component } from "react";
 import * as classes from './Login.scss';
@@ -11,6 +11,7 @@ class Login extends Component<{}, {}> {
 	public render() {
 		return (
 			<div className={classes.LoginContainer}>
+				<Modal isOpen={true} />
 				<div className={classes.LoginContent}>
 					<div className={classes.LoginLogoContainer}>
 						<img className={classes.LoginLogo} src={require('styles/assets/logo.png')} />

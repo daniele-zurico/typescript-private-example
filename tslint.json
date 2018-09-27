@@ -12,6 +12,6 @@
     "no-debugger": false,
     "jsx-no-lambda": false,
     "forin": false,
-    "object-literal-sort-keys": false,
+    "object-literal-sort-keys": false
   }
 }

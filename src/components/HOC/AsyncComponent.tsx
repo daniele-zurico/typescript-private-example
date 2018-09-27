@@ -13,10 +13,7 @@ const asyncComponent = (importComponent: any) => {
 
         public componentDidMount() {
             importComponent()
-                .then((cmp: any) => {
-                    debugger
-                    this.setState({ component: cmp.default });
-                });
+                .then((cmp: any) => this.setState({ component: cmp.default }));
         }
 
         public render() {

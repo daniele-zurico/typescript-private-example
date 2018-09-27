@@ -57,8 +57,9 @@ class FormElements extends Component<IProps, IState> {
     });
   };
 
-  public onSubmit(evt: React.FormEvent) {
-    this.props.onSubmit(evt);
+  public submitHandler = (evt: React.FormEvent) => {
+    evt.preventDefault();
+    this.props.onSubmit(this.state.formData);
   }
 
   public render() {
@@ -111,7 +112,7 @@ class FormElements extends Component<IProps, IState> {
       }
     });
     return (
-      <form onSubmit={this.onSubmit}>
+      <form onSubmit={this.submitHandler}>
         {form}
         <div className={classes.ButtonContainer}>
           {formButtons}

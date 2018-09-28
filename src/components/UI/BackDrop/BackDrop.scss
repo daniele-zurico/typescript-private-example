@@ -1,0 +1,56 @@
+.BackDrop {
+    background-color: rgba(0, 0, 0, 0.68);
+    position: absolute;
+    z-index: 99999;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    opacity: 1;
+
+    &.BackDropShow {
+        opacity: 0;
+        animation: onFadeIn 0.8s ease-out forwards;
+    }
+
+    &.BackDropHide {
+        opacity: 0;
+        animation: onFadeOut 2s ease-out forwards;
+    }
+
+    @keyframes onFadeIn {
+        0% {
+            display: none;
+            opacity: 0;
+        }
+
+        50% {
+            display: flex;
+            opacity: 0.5;
+        }
+
+        100% {
+            display: flex;
+            opacity: 1;
+        }
+    }
+
+    @keyframes onFadeOut {
+        0% {
+            display: flex;
+            opacity: 1;
+        }
+
+        50% {
+            display: flex;
+            opacity: 0.5;
+        }
+
+        100% {
+            display: none;
+            opacity: 0;
+        }
+    }
+
+}

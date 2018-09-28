@@ -19,7 +19,8 @@
     "noUnusedLocals": true,
     "paths": {
       "components/*": ["components/*"],
-      "styles/*": ["styles/*"]
+      "styles/*": ["styles/*"],
+      "common/*": ["common/*"]
     }
   },
   "exclude": [

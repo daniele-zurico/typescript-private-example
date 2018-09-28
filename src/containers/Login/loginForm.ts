@@ -21,11 +21,11 @@ export const loginForm: IElement = {
     placeholder: 'Password',
     type: 'password',
     validation: {
-      max: 8,
+      max: 20,
       min: 2,
       required: true,
     },
-    errorMessage: 'Your password is between 2 and 8 character',
+    errorMessage: 'Your password is between 2 and 20 character',
     value: '',
   },
   loginBtn: {

@@ -1,43 +1,64 @@
+@import '~styles/app';
+
 .LoginContainer {
-    background-image: url(http://bit.ly/2gPLxZ4);
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-    height: 100vh;
-    .LoginContent {
-      width: 350px;
-      height: 455px;
-      background: inherit;
+  background-image: url(http://bit.ly/2gPLxZ4);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  height: 100vh;
+
+  .LoginContent {
+    width: 350px;
+    height: 455px;
+    background: inherit;
+    position: absolute;
+    overflow: hidden;
+    top: 50%;
+    left: 50%;
+    margin-left: -175px;
+    margin-top: -250px;
+    border-radius: 8px;
+
+    &:before {
+      width: 400px;
+      height: 460px;
+      content: "";
       position: absolute;
-      overflow: hidden;
-      top: 50%;
-      left: 50%;
-      margin-left: -175px;
-      margin-top: -250px;
-      border-radius: 8px;
-      &:before {
-        width: 400px;
-        height: 460px;
-        content: "";
-        position: absolute;
-        top: -25px;
-        left: -25px;
-        bottom: 0;
-        right: 0;
-        background: inherit;
-        box-shadow: inset 0 0 0 200px rgba(255,255,255,0.2);
-        filter: blur(10px);
-       }
-       .LoginLogoContainer {
-        position: absolute;
-        width: 100%;
-        left: 0;
-        top: 20px;
-        .LoginLogo {
-          display: flex;
-          margin: auto;
-          height: 77px;
-        }
-       }
-     }
+      top: -25px;
+      left: -25px;
+      bottom: 0;
+      right: 0;
+      background: inherit;
+      box-shadow: inset 0 0 0 200px rgba(255, 255, 255, 0.2);
+      filter: blur(10px);
+    }
+
+    .Register {
+      position: absolute;
+      bottom: 35px;
+      font-size: 12px;
+      width: 100%;
+      text-align: center;
+      color: white;
+
+      .RegisterLnk {
+        color: $primary-color;
+        text-decoration: underline;
+        cursor: pointer;
+      }
+    }
+
+    .LoginLogoContainer {
+      position: absolute;
+      width: 100%;
+      left: 0;
+      top: 20px;
+
+      .LoginLogo {
+        display: flex;
+        margin: auto;
+        height: 77px;
+      }
+    }
+  }
 }

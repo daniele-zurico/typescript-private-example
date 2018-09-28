@@ -13,16 +13,17 @@ const errorHandler = (WrappedComponent: any) => {
             error: false,
             errorMessage: ''
         }
+        private resInterceptor: any;
 
-        public componentDidMount() {
-            debugger
-            axios.interceptors.response.use((response) => {
+        public componentWillMount() {
+            this.resInterceptor = axios.interceptors.response.use((response) => {
                 return response;
             }, (err) => {
-                debugger
-                console.log(err.response.data.error.message);
                 this.setState({ error: true, errorMessage: err.response.data.error.message });
             });
+        }
+        public componentWillUnmount() {
+            axios.interceptors.response.eject(this.resInterceptor);
         }
 
         public dismissHandler = () => {

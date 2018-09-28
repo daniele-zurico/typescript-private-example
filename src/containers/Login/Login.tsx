@@ -34,7 +34,6 @@ class Login extends Component<{}, IState> {
 				console.log(res.data);
 			})
 			.catch((err) => {
-				debugger
 				const error = err.response.data.error;
 				switch (error.message) {
 					case 'EMAIL_NOT_FOUND':

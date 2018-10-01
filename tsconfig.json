@@ -20,7 +20,8 @@
     "paths": {
       "components/*": ["components/*"],
       "styles/*": ["styles/*"],
-      "common/*": ["common/*"]
+      "common/*": ["common/*"],
+      "store/*": ["store/*"]
     }
   },
   "exclude": [

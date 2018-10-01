@@ -34,7 +34,7 @@ export const loginForm: IElement = {
     id: 3,
     label: 'login',
     isSubmit: true,
-  },
+  }
 };
 
 export default loginForm;

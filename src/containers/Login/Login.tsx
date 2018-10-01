@@ -1,16 +1,22 @@
-import axios from 'common/util/axios-http-auth';
+// import axios from 'common/util/axios-http-auth';
 import { FormElements } from 'components';
 import ErrorHandler from 'components/HOC/ErrorHandler';
 import * as React from 'react';
 import { Component } from "react";
+import { connect } from 'react-redux';
+import { login } from 'store/actions';
 import * as classes from './Login.scss';
 import loginForm from './loginForm';
 
-class Login extends Component<{}, {}> {
+interface IState {
+	login: (email: string, password: string) => void
+}
+
+class Login extends Component<IState, {}> {
 
 	public handleLogin = (evt: any) => {
-		let email = null;
-		let password = null;
+		let email = '';
+		let password = '';
 
 		evt.map((el: any) => {
 			if (el.id === 'username') {
@@ -20,10 +26,11 @@ class Login extends Component<{}, {}> {
 				password = el.element.value;
 			}
 		});
-		axios.post('verifyPassword', { email, password })
-			.then((res) => {
-				console.log(res);
-			});
+		// axios.post('verifyPassword', { email, password })
+		// 	.then((res) => {
+		// 		console.log(res);
+		// 	});
+		this.props.login(email, password);
 	};
 
 	public closeModal = () => {
@@ -45,4 +52,10 @@ class Login extends Component<{}, {}> {
 	}
 }
 
-export default ErrorHandler(Login);
+// export default ErrorHandler(Login);
+const mapStateToProps = (state: any) => ({
+});
+const mapDispatchToProps = (dispatch: any) => ({
+	login: (email: string, password: string) => dispatch(login(email, password))
+});
+export default connect(mapStateToProps, mapDispatchToProps)(ErrorHandler(Login));

@@ -43,25 +43,23 @@ const input = (props: IProps) => {
     showFieldClass = ['fa', 'fa-eye'];
   }
   return (
-    <React.Fragment>
-      <div className={classes.formInput}>
-        <label>
-          <input
-            required={true}
-            type={type}
-            value={value}
-            onChange={onInputChange}
-          />
-          <span className={classes.placeholder}>{placeholder}</span>
-        </label>
-        {showEye && (
-          <span className={classes.iconInput}>
-            <i className={showFieldClass.join(' ')} onClick={onShowField} />
-          </span>
-        )}
-        {hintOrError}
-      </div>
-    </React.Fragment>
+    <div className={classes.formInput}>
+      <label>
+        <input
+          required={true}
+          type={type}
+          value={value}
+          onChange={onInputChange}
+        />
+        <span className={classes.placeholder}>{placeholder}</span>
+      </label>
+      {showEye && (
+        <span className={classes.iconInput}>
+          <i className={showFieldClass.join(' ')} onClick={onShowField} />
+        </span>
+      )}
+      {hintOrError}
+    </div>
   );
 };
 

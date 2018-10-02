@@ -40,6 +40,18 @@ const reducer = (state = initialState, action: any) => {
         error: action.error,
         loading: false,
       };
+    case actionTypes.DISMISS_ERROR:
+      return {
+        ...state,
+        displayName: '',
+        email: '',
+        idToken: '',
+        kind: '',
+        localId: '',
+        registered: false,
+        error: null,
+        loading: false,
+      };
     default:
       return state;
   }

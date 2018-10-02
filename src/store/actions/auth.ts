@@ -1,4 +1,4 @@
-import { IHttpErrorResponse, IUser } from 'common/interfaces';
+import { IError, IUser } from 'common/interfaces';
 import * as actionTypes from './actionTypes';
 
 export const login = (email: string, password: string) => ({
@@ -12,7 +12,11 @@ export const loginSuccess = (response: IUser) => ({
   response,
 });
 
-export const loginError = (error: IHttpErrorResponse) => ({
+export const loginError = (error: IError) => ({
   type: actionTypes.LOGIN_ERROR,
   error,
+});
+
+export const dismissError = () => ({
+  type: actionTypes.DISMISS_ERROR,
 });

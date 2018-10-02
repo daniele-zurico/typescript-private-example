@@ -19,7 +19,7 @@ export const fetchUserEpic = (action$: any) =>
         )
         .pipe(
           map((response: any) => loginSuccess(response)),
-          catchError((err: any) => of(loginError(err.error.response.error)))
+          catchError((err: any) => of(loginError(err.response.error)))
         )
     )
   );

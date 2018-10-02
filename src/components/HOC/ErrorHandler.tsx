@@ -1,4 +1,3 @@
-import axios from 'common/util/axios-http-auth';
 import { Modal } from 'components/UI';
 import * as React from 'react';
 import { Component } from 'react';
@@ -13,17 +12,17 @@ const errorHandler = (WrappedComponent: any) => {
             error: false,
             errorMessage: ''
         }
-        private resInterceptor: any;
+        // private resInterceptor: any;
 
         public componentWillMount() {
-            this.resInterceptor = axios.interceptors.response.use((response) => {
-                return response;
-            }, (err) => {
-                this.setState({ error: true, errorMessage: err.response.data.error.message });
-            });
+            // this.resInterceptor = axios.interceptors.response.use((response) => {
+            //     return response;
+            // }, (err) => {
+            //     this.setState({ error: true, errorMessage: err.response.data.error.message });
+            // });
         }
         public componentWillUnmount() {
-            axios.interceptors.response.eject(this.resInterceptor);
+            // axios.interceptors.response.eject(this.resInterceptor);
         }
 
         public dismissHandler = () => {

@@ -11,7 +11,8 @@ import './index.scss';
 import registerServiceWorker from './registerServiceWorker';
 
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+// tslint:disable-next-line:no-string-literal
+const composeEnhancers = window['__REDUX_DEVTOOLS_EXTENSION_COMPOSE__'] || compose;
 
 const epicMiddleware = createEpicMiddleware();
 

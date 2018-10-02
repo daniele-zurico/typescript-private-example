@@ -6,6 +6,9 @@ const reducer = (state = [], action: any) => {
         case actionTypes.LOGIN_SUCCESS:
             debugger
             return state;
+            case actionTypes.LOGIN_ERROR:
+            debugger
+            return state;
         default:
             return state;
     }

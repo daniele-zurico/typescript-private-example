@@ -23,7 +23,8 @@ class FormElements extends Component<IProps, IState> {
         element: {
           ...this.props.data[el],
           valid: false,
-          touched: false
+          touched: false,
+          showField: false,
         },
       });
     }
@@ -34,7 +35,10 @@ class FormElements extends Component<IProps, IState> {
     };
   }
 
-  public inputHandler = (evt: React.ChangeEvent<HTMLInputElement>, id: number) => {
+  public inputHandler = (
+    evt: React.ChangeEvent<HTMLInputElement>,
+    id: number
+  ) => {
     // Update the value of the input
     const newForm = this.state.formData.map((el: any) => {
       if (el.id === id && el.element.component !== 'button') {
@@ -44,7 +48,7 @@ class FormElements extends Component<IProps, IState> {
             ...el.element,
             value: evt.target.value,
             valid: validateElement(evt.target.value, el.element.validation),
-            touched: true
+            touched: true,
           },
         };
       }
@@ -60,14 +64,34 @@ class FormElements extends Component<IProps, IState> {
   public submitHandler = (evt: React.FormEvent) => {
     evt.preventDefault();
     this.props.onSubmit(this.state.formData);
-  }
+  };
+
+  public showFieldHandler = (
+    evt: React.MouseEvent<HTMLElement>,
+    id: number
+  ) => {
+    const updatedValue = this.state.formData.map((el: any) => {
+      if (el.id === id) {
+        return {
+          ...el,
+          element: {
+            ...el.element,
+            showField: !el.element.showField,
+            type: el.element.type === 'password' ? 'text' : 'password',
+          },
+        };
+      } else {
+        return el;
+      }
+    });
+    this.setState({ formData: updatedValue });
+  };
 
   public render() {
     const form: any[] = [];
     const formButtons: any[] = [];
     const { formData, isValid } = this.state;
     formData.map((el: any) => {
-
       const {
         component,
         id,
@@ -77,9 +101,11 @@ class FormElements extends Component<IProps, IState> {
         value,
         errorMessage,
         label,
+        showEye,
+        showField,
         isSubmit,
         valid,
-        touched
+        touched,
       } = el.element;
 
       switch (component) {
@@ -93,8 +119,11 @@ class FormElements extends Component<IProps, IState> {
               value={value}
               valid={valid}
               touched={touched}
+              showEye={showEye}
               errorMessage={errorMessage}
               onInputChange={evt => this.inputHandler(evt, el.id)}
+              showField={showField}
+              onShowField={evt => this.showFieldHandler(evt, el.id)}
             />
           );
           break;
@@ -114,9 +143,7 @@ class FormElements extends Component<IProps, IState> {
     return (
       <form onSubmit={this.submitHandler}>
         {form}
-        <div className={classes.ButtonContainer}>
-          {formButtons}
-        </div>
+        <div className={classes.ButtonContainer}>{formButtons}</div>
       </form>
     );
   }

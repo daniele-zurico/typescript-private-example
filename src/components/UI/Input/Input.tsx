@@ -9,10 +9,13 @@ interface IProps {
   valid?: boolean;
   errorMessage?: string;
   touched?: boolean;
+  showEye?: boolean;
+  showField?: boolean;
   onInputChange?: (
     evt: React.ChangeEvent<HTMLInputElement>,
     id?: string
   ) => void;
+  onShowField?: (evt: React.MouseEvent<HTMLElement>, id?: string) => void;
 }
 
 const input = (props: IProps) => {
@@ -20,16 +23,25 @@ const input = (props: IProps) => {
     type,
     value,
     placeholder,
-    onInputChange,
     hint,
     valid,
     errorMessage,
     touched,
+    showEye,
+    showField,
+    onInputChange,
+    onShowField,
   } = props;
   let hintOrError = <div className={classes.hint}>{hint}</div>;
-    if(!valid && touched ) {
-        hintOrError =  <div className={classes.errorMessage}>{errorMessage}</div>;
-    }
+  if (!valid && touched) {
+    hintOrError = <div className={classes.errorMessage}>{errorMessage}</div>;
+  }
+  let showFieldClass = [];
+  if (showField) {
+    showFieldClass = ['fa', 'fa-eye', 'fa-eye-slash'];
+  } else {
+    showFieldClass = ['fa', 'fa-eye'];
+  }
   return (
     <React.Fragment>
       <div className={classes.formInput}>
@@ -42,6 +54,11 @@ const input = (props: IProps) => {
           />
           <span className={classes.placeholder}>{placeholder}</span>
         </label>
+        {showEye && (
+          <span className={classes.iconInput}>
+            <i className={showFieldClass.join(' ')} onClick={onShowField} />
+          </span>
+        )}
         {hintOrError}
       </div>
     </React.Fragment>

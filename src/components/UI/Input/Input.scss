@@ -1,97 +1,104 @@
 @import '~styles/app';
 
 .formInput {
-    margin: 20px 0;
-    width: 100%;
+  margin: 20px 0;
+  width: 100%;
+  position: relative;
+  .iconInput {
+    position: absolute;
+    top: 24px;
+    right: 1px;
+    color: white;
+    cursor: pointer;
+    z-index: 1;
+  }
+  label {
     position: relative;
+    display: block;
+    width: 100%;
+    min-height: $input-height + $input-top;
+  }
 
-    label {
-        position: relative;
-        display: block;
-        width: 100%;
-        min-height: $input-height + $input-top;
+  .placeholder {
+    position: absolute;
+    display: block;
+    top: ($input-height / 2) + $placeholder-padding;
+    z-index: 2;
+    font-size: $placeholder-font-size;
+    transition: all $placeholder-transition;
+    width: 80%;
+    color: white;
+    cursor: text;
+  }
+
+  input {
+    position: absolute;
+    top: $input-top;
+    z-index: 1;
+    width: 100%;
+    font-size: $input-font-size;
+    border: 0;
+    border-bottom: 1px solid $input-border-color;
+    transition: border-color $placeholder-transition;
+    background: inherit;
+    outline: none;
+    color: white;
+    padding: 0;
+    margin: 0;
+  }
+
+  input {
+    height: $input-height;
+  }
+
+  input:focus,
+  input:valid {
+    & + .placeholder {
+      top: 0;
+      cursor: inherit;
+      font-size: $placeholder-font-size-small;
+      color: $highlight-color;
     }
 
-    .placeholder {
-        position: absolute;
-        display: block;
-        top: ($input-height / 2) + $placeholder-padding;
-        z-index: 2;
-        font-size: $placeholder-font-size;
-        transition: all $placeholder-transition;
-        width: 100%;
-        color: white;
-        cursor: text;
+    border-bottom: 2px solid $highlight-color;
+  }
+
+  .hint {
+    font-size: 12px;
+    width: 100%;
+    text-align: right;
+    color: #dedede;
+    margin-top: 2px;
+  }
+
+  .errorMessage {
+    font-size: 12px;
+    width: 100%;
+    text-align: left;
+    color: $warn-color;
+    margin-top: 2px;
+    position: absolute;
+    top: 48px;
+    -webkit-animation: fadein 200ms;
+    /* Safari, Chrome and Opera > 12.1 */
+    -moz-animation: fadein 200ms;
+    /* Firefox < 16 */
+    -ms-animation: fadein 200ms;
+    /* Internet Explorer */
+    -o-animation: fadein 200ms;
+    /* Opera < 12.1 */
+    animation: fadein 200ms;
+  }
+
+  @keyframes fadein {
+    from {
+      opacity: 0;
+      top: 40px;
     }
 
-    input {
-        position: absolute;
-        top: $input-top;
-        z-index: 1;
-        width: 100%;
-        font-size: $input-font-size;
-        border: 0;
-        border-bottom: 1px solid $input-border-color;
-        transition: border-color $placeholder-transition;
-        background: inherit;
-        outline: none;
-        color: white;
-        padding: 0;
-        margin: 0;
+    to {
+      opacity: 1;
+      top: 48px;
     }
-
-    input {
-        height: $input-height;
-    }
-
-    input:focus,
-    input:valid {
-        &+.placeholder {
-            top: 0;
-            cursor: inherit;
-            font-size: $placeholder-font-size-small;
-            color: $highlight-color;
-        }
-
-        border-bottom:2px solid $highlight-color;
-    }
-
-    .hint {
-        font-size: 12px;
-        width: 100%;
-        text-align: right;
-        color: #dedede;
-        margin-top: 2px;
-    }
-
-    .errorMessage {
-        font-size: 12px;
-        width: 100%;
-        text-align: left;
-        color: $warn-color;
-        margin-top: 2px;
-        position: absolute;
-        top: 48px;
-        -webkit-animation: fadein 200ms;
-        /* Safari, Chrome and Opera > 12.1 */
-        -moz-animation: fadein 200ms;
-        /* Firefox < 16 */
-        -ms-animation: fadein 200ms;
-        /* Internet Explorer */
-        -o-animation: fadein 200ms;
-        /* Opera < 12.1 */
-        animation: fadein 200ms;
-    }
-
-    @keyframes fadein {
-        from {
-            opacity: 0;
-            top: 40px;
-        }
-
-        to {
-            opacity: 1;
-            top: 48px;
-        }
-    }
+  }
 }

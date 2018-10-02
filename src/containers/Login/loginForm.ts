@@ -26,6 +26,7 @@ export const loginForm: IElement = {
       required: true,
     },
     errorMessage: 'Your password is between 2 and 20 character',
+    showEye: true,
     value: '',
   },
   loginBtn: {
@@ -34,7 +35,7 @@ export const loginForm: IElement = {
     id: 3,
     label: 'login',
     isSubmit: true,
-  }
+  },
 };
 
 export default loginForm;

@@ -1,5 +1,5 @@
 export interface IElement {
-  [key: string]: IButton | IInput
+  [key: string]: IButton | IInput;
 }
 
 interface IInput {
@@ -11,11 +11,12 @@ interface IInput {
   validation?: IValidation;
   value?: string;
   errorMessage?: string;
+  showEye?: boolean;
 }
 
 export interface IValidation {
-  max?: number;	
-	min?: number;
+  max?: number;
+  min?: number;
   required: boolean;
   email?: string;
 }

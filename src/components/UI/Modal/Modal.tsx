@@ -20,7 +20,6 @@ export enum ModalType {
 const modal = (props: IProps) => {
   const alertHeaderClass = [classes.Header];
   if (props.type) {
-    debugger;
     if (props.type === ModalType.ERROR) {
       alertHeaderClass.push(classes.HeaderError);
     }

@@ -1,10 +1,10 @@
 import { isFormValid, validateElement } from 'common/util/util';
-import { Button, IElement, Input } from 'components';
+import { Button, Input } from 'components';
 import * as React from 'react';
-import { Component } from 'react';
 import * as classes from './Form.scss';
+
 interface IProps {
-  data: IElement;
+  data: any;
   onSubmit: (evt: React.FormEvent) => void;
 }
 
@@ -13,24 +13,12 @@ interface IState {
   isValid: boolean;
 }
 
-class FormElements extends Component<IProps, IState> {
+class FormElements extends React.Component<IProps, IState> {
   constructor(props: IProps) {
     super(props);
-    const formData = [];
-    for (const el in this.props.data) {
-      formData.push({
-        id: el,
-        element: {
-          ...this.props.data[el],
-          valid: false,
-          touched: false,
-          showField: false,
-        },
-      });
-    }
-
+    console.log('props are changed');
     this.state = {
-      formData,
+      formData: this.updateStateFromProps(),
       isValid: false,
     };
   }
@@ -146,6 +134,22 @@ class FormElements extends Component<IProps, IState> {
         <div className={classes.ButtonContainer}>{formButtons}</div>
       </form>
     );
+  }
+
+  private updateStateFromProps() {
+    const formData = [];
+    for (const el in this.props.data) {
+      formData.push({
+        id: el,
+        element: {
+          ...this.props.data[el],
+          valid: false,
+          touched: false,
+          showField: false,
+        },
+      });
+    }
+    return formData;
   }
 }
 

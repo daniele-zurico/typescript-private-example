@@ -12,9 +12,9 @@ export const fetchUserEpic = (action$: any) =>
     mergeMap((action: any) =>
       ajax
         .post(
-          `${environment.firebase.googleUrl}verifyPassword?key=${
-            environment.firebase.apiKey
-          }`,
+          `${environment.firebase.googleUrl}${
+            action.isRegister ? 'isRegister' : 'verifyPassword'
+          }?key=${environment.firebase.apiKey}`,
           { email: action.email, password: action.password }
         )
         .pipe(

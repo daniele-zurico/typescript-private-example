@@ -9,11 +9,19 @@ import * as classes from './Login.scss';
 import loginForm from './loginForm';
 
 interface IProps {
-  login: (email: string, password: string) => void;
+  login: (email: string, password: string, isRegister: boolean) => void;
   error: IError;
 }
 
-class Login extends Component<IProps> {
+interface IState {
+  isRegister: boolean;
+}
+
+class Login extends Component<IProps, IState> {
+  public state = {
+    isRegister: false,
+  };
+
   public handleLogin = (evt: any) => {
     let email = '';
     let password = '';
@@ -26,14 +34,16 @@ class Login extends Component<IProps> {
         password = el.element.value;
       }
     });
-    this.props.login(email, password);
+    this.props.login(email, password, this.state.isRegister);
   };
 
-  public closeModal = () => {
-    this.setState({
-      ...this.state,
-      error: null,
-    });
+  public handleRegister = () => {
+    this.setState(
+      (prevState: IState) => ({
+        isRegister: !prevState.isRegister,
+      }),
+      () => console.log(this.state)
+    );
   };
 
   public render() {
@@ -46,10 +56,18 @@ class Login extends Component<IProps> {
               src={require('styles/assets/logo.png')}
             />
           </div>
-          <FormElements data={loginForm} onSubmit={this.handleLogin} />
+
+          <FormElements
+            key={this.state.isRegister ? 'register' : 'login'}
+            data={loginForm(this.state.isRegister)}
+            onSubmit={this.handleLogin}
+          />
+
           <div className={classes.Register}>
             You don't have an account?{' '}
-            <span className={classes.RegisterLnk}>Register</span>
+            <span className={classes.RegisterLnk} onClick={this.handleRegister}>
+              Register
+            </span>
           </div>
         </div>
       </div>
@@ -72,7 +90,8 @@ const mapStateToProps = (state: IStateToProps) => ({
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
-  login: (email: string, password: string) => dispatch(login(email, password)),
+  login: (email: string, password: string, isRegister: boolean) =>
+    dispatch(login(email, password, isRegister)),
   dismissError: () => dispatch(dismissError()),
 });
 export default connect(

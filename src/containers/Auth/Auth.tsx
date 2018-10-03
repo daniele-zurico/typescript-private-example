@@ -57,6 +57,10 @@ class Auth extends Component<IProps, IState> {
             />
           </div>
 
+          <div className={classes.AuthTxt}>
+            {this.state.isRegister ? 'SIGN UP' : 'SIGN IN'}
+          </div>
+
           <FormElements
             key={this.state.isRegister ? 'register' : 'login'}
             data={authForm(this.state.isRegister)}

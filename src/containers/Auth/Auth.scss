@@ -33,6 +33,19 @@
       filter: blur(10px);
     }
 
+    .AuthTxt {
+      position: absolute;
+      width: 100%;
+      margin: auto;
+      text-align: center;
+      top: 110px;
+      color: #e68071;
+      font-family: fantasy;
+      text-decoration: underline;
+      font-weight: bold;
+      letter-spacing: 1.4px;
+    }
+
     .Register {
       position: absolute;
       bottom: 35px;

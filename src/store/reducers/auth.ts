@@ -19,7 +19,14 @@ const reducer = (state = initialState, action: any) => {
     case actionTypes.LOGIN_START:
       return { ...state, loading: true };
     case actionTypes.LOGIN_SUCCESS:
-      const { displayName, email, idToken, kind, localId, registered } = action;
+      const {
+        displayName,
+        email,
+        idToken,
+        kind,
+        localId,
+        registered,
+      } = action.response;
       return {
         ...state,
         displayName,
@@ -35,6 +42,7 @@ const reducer = (state = initialState, action: any) => {
         loading: false,
       };
     case actionTypes.LOGIN_ERROR:
+      const { message, code } = action.error;
       return {
         ...state,
         displayName: '',
@@ -45,8 +53,8 @@ const reducer = (state = initialState, action: any) => {
         registered: false,
         error: {
           ...action.error,
-          message: action.error.message,
-          code: action.error.code,
+          message,
+          code,
         },
         loading: false,
       };

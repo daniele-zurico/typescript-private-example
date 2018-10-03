@@ -13,12 +13,16 @@ export const fetchUserEpic = (action$: any) =>
       ajax
         .post(
           `${environment.firebase.googleUrl}${
-            action.isRegister ? 'isRegister' : 'verifyPassword'
+            action.isRegister ? 'signupNewUser' : 'verifyPassword'
           }?key=${environment.firebase.apiKey}`,
-          { email: action.email, password: action.password }
+          {
+            email: action.email,
+            password: action.password,
+            returnSecureToken: true,
+          }
         )
         .pipe(
-          map((response: any) => loginSuccess(response)),
+          map((response: any) => loginSuccess(response.response)),
           catchError((err: any) => of(loginError(err.response.error)))
         )
     )

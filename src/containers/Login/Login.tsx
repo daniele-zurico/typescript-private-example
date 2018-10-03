@@ -57,8 +57,18 @@ class Login extends Component<IProps> {
   }
 }
 
-const mapStateToProps = (state: any) => ({
-  error: state.auth.error,
+interface IStateToProps {
+  auth: {
+    error: IError;
+  };
+}
+
+const mapStateToProps = (state: IStateToProps) => ({
+  error: {
+    ...state.auth.error,
+    code: state.auth.error.code,
+    message: messageFromKey(state.auth.error.message),
+  },
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
@@ -69,3 +79,21 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(ErrorHandler(Login));
+
+export const messageFromKey = (message: string): string | JSX.Element => {
+  switch (message) {
+    case 'EMAIL_NOT_FOUND':
+      return (
+        <React.Fragment>
+          <p>There is no user record corresponding to this identifier.</p>
+          <p> The user may have been deleted.</p>
+        </React.Fragment>
+      );
+    case 'INVALID_PASSWORD':
+      return `The password is invalid or the user does not have a password.`;
+    case 'USER_DISABLED':
+      return `The user account has been disabled by an administrator.`;
+    default:
+      return message;
+  }
+};

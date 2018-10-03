@@ -8,7 +8,10 @@ const initialState = {
   localId: '',
   registered: false,
   loading: false,
-  error: null,
+  error: {
+    message: '',
+    code: null,
+  },
 };
 
 const reducer = (state = initialState, action: any) => {
@@ -25,7 +28,10 @@ const reducer = (state = initialState, action: any) => {
         kind,
         localId,
         registered,
-        error: null,
+        error: {
+          ...state.error,
+          code: null,
+        },
         loading: false,
       };
     case actionTypes.LOGIN_ERROR:
@@ -37,7 +43,11 @@ const reducer = (state = initialState, action: any) => {
         kind: '',
         localId: '',
         registered: false,
-        error: action.error,
+        error: {
+          ...action.error,
+          message: action.error.message,
+          code: action.error.code,
+        },
         loading: false,
       };
     case actionTypes.DISMISS_ERROR:
@@ -49,7 +59,10 @@ const reducer = (state = initialState, action: any) => {
         kind: '',
         localId: '',
         registered: false,
-        error: null,
+        error: {
+          ...state.error,
+          code: null,
+        },
         loading: false,
       };
     default:

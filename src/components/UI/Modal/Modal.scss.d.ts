@@ -5,4 +5,7 @@ export const ModalClose: string;
 export const slideUp: string;
 export const Close: string;
 export const Header: string;
+export const HeaderError: string;
+export const HeaderWarn: string;
+export const HeaderSuccess: string;
 export const Content: string;

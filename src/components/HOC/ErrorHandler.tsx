@@ -7,6 +7,7 @@
  */
 import { IError } from 'common/interfaces';
 import { Modal } from 'components/UI';
+import { ModalType } from 'components/UI/Modal/Modal';
 import * as React from 'react';
 import { Component } from 'react';
 
@@ -24,8 +25,9 @@ const errorHandler = (WrappedComponent: any) => {
       return (
         <React.Fragment>
           <Modal
-            isOpen={this.props.error ? true : false}
+            isOpen={this.props.error.code ? true : false}
             header="Error"
+            type={ModalType.ERROR}
             onDismiss={this.dismissHandler}
           >
             {this.props.error ? this.props.error.message : null}

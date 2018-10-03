@@ -22,7 +22,25 @@ export const authUserEpic = (action$: any) =>
           }
         )
         .pipe(
-          map((response: any) => authSuccess(response.response)),
+          map((res: any) => {
+            try {
+              const expirationDate = new Date(
+                new Date().getTime() + res.response.expiresIn * 1000
+              );
+              localStorage.setItem('token', res.response.idToken);
+              localStorage.setItem('expirationDate', expirationDate.toString());
+              localStorage.setItem('userId', res.response.localId);
+              localStorage.setItem('token', res.response.idToken);
+              return authSuccess(res.response);
+            } catch (err) {
+              return of(
+                authError({
+                  code: 500,
+                  message: 'unable to save your data',
+                })
+              );
+            }
+          }),
           catchError((err: any) => of(authError(err.response.error)))
         )
     )

@@ -4,12 +4,12 @@ import ErrorHandler from 'components/HOC/ErrorHandler';
 import * as React from 'react';
 import { Component } from 'react';
 import { connect } from 'react-redux';
-import { dismissError, login } from 'store/actions';
-import * as classes from './Login.scss';
-import loginForm from './loginForm';
+import { authStart, dismissError } from 'store/actions';
+import * as classes from './Auth.scss';
+import authForm from './authForm';
 
 interface IProps {
-  login: (email: string, password: string, isRegister: boolean) => void;
+  auth: (email: string, password: string, isRegister: boolean) => void;
   error: IError;
 }
 
@@ -17,7 +17,7 @@ interface IState {
   isRegister: boolean;
 }
 
-class Login extends Component<IProps, IState> {
+class Auth extends Component<IProps, IState> {
   public state = {
     isRegister: false,
   };
@@ -34,7 +34,7 @@ class Login extends Component<IProps, IState> {
         password = el.element.value;
       }
     });
-    this.props.login(email, password, this.state.isRegister);
+    this.props.auth(email, password, this.state.isRegister);
   };
 
   public handleRegister = () => {
@@ -48,18 +48,18 @@ class Login extends Component<IProps, IState> {
 
   public render() {
     return (
-      <div className={classes.LoginContainer}>
-        <div className={classes.LoginContent}>
-          <div className={classes.LoginLogoContainer}>
+      <div className={classes.AuthContainer}>
+        <div className={classes.AuthContent}>
+          <div className={classes.AuthLogoContainer}>
             <img
-              className={classes.LoginLogo}
+              className={classes.AuthLogo}
               src={require('styles/assets/logo.png')}
             />
           </div>
 
           <FormElements
             key={this.state.isRegister ? 'register' : 'login'}
-            data={loginForm(this.state.isRegister)}
+            data={authForm(this.state.isRegister)}
             onSubmit={this.handleLogin}
           />
 
@@ -90,14 +90,14 @@ const mapStateToProps = (state: IStateToProps) => ({
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
-  login: (email: string, password: string, isRegister: boolean) =>
-    dispatch(login(email, password, isRegister)),
+  auth: (email: string, password: string, isRegister: boolean) =>
+    dispatch(authStart(email, password, isRegister)),
   dismissError: () => dispatch(dismissError()),
 });
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(ErrorHandler(Login));
+)(ErrorHandler(Auth));
 
 export const messageFromKey = (message: string): string | JSX.Element => {
   switch (message) {

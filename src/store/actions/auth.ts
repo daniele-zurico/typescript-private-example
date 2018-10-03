@@ -1,24 +1,24 @@
 import { IError, IUser } from 'common/interfaces';
 import * as actionTypes from './actionTypes';
 
-export const login = (
+export const authStart = (
   email: string,
   password: string,
   isRegister: boolean
 ) => ({
-  type: actionTypes.LOGIN_START,
+  type: actionTypes.AUTH_START,
   email,
   password,
   isRegister,
 });
 
-export const loginSuccess = (response: IUser) => ({
-  type: actionTypes.LOGIN_SUCCESS,
+export const authSuccess = (response: IUser) => ({
+  type: actionTypes.AUTH_SUCCESS,
   response,
 });
 
-export const loginError = (error: IError) => ({
-  type: actionTypes.LOGIN_ERROR,
+export const authError = (error: IError) => ({
+  type: actionTypes.AUTH_ERROR,
   error,
 });
 

@@ -16,9 +16,9 @@ const initialState = {
 
 const reducer = (state = initialState, action: any) => {
   switch (action.type) {
-    case actionTypes.LOGIN_START:
+    case actionTypes.AUTH_START:
       return { ...state, loading: true };
-    case actionTypes.LOGIN_SUCCESS:
+    case actionTypes.AUTH_SUCCESS:
       const {
         displayName,
         email,
@@ -41,7 +41,7 @@ const reducer = (state = initialState, action: any) => {
         },
         loading: false,
       };
-    case actionTypes.LOGIN_ERROR:
+    case actionTypes.AUTH_ERROR:
       const { message, code } = action.error;
       return {
         ...state,

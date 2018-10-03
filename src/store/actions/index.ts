@@ -1,1 +1,1 @@
-export { login, loginSuccess, loginError, dismissError } from './auth';
+export { authStart, authSuccess, authError, dismissError } from './auth';

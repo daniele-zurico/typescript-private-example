@@ -1,6 +1,6 @@
 import { IElement } from 'components';
 
-export const loginForm = (isRegister: boolean): IElement => ({
+export const authForm = (isRegister: boolean): IElement => ({
   username: {
     component: 'input',
     hint: 'Your username is your email address',
@@ -38,4 +38,4 @@ export const loginForm = (isRegister: boolean): IElement => ({
   },
 });
 
-export default loginForm;
+export default authForm;

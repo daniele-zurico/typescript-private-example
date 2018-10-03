@@ -1,13 +1,13 @@
 @import '~styles/app';
 
-.LoginContainer {
+.AuthContainer {
   background-image: url(http://bit.ly/2gPLxZ4);
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
   height: 100vh;
 
-  .LoginContent {
+  .AuthContent {
     width: 350px;
     height: 455px;
     background: inherit;
@@ -22,7 +22,7 @@
     &:before {
       width: 400px;
       height: 460px;
-      content: "";
+      content: '';
       position: absolute;
       top: -25px;
       left: -25px;
@@ -48,13 +48,13 @@
       }
     }
 
-    .LoginLogoContainer {
+    .AuthLogoContainer {
       position: absolute;
       width: 100%;
       left: 0;
       top: 20px;
 
-      .LoginLogo {
+      .AuthLogo {
         display: flex;
         margin: auto;
         height: 77px;

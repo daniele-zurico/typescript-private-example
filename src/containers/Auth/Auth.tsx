@@ -68,9 +68,9 @@ class Auth extends Component<IProps, IState> {
           />
 
           <div className={classes.Register}>
-            You don't have an account?{' '}
+            Don't have an account?{' '}
             <span className={classes.RegisterLnk} onClick={this.handleRegister}>
-              Register
+              Sign Up
             </span>
           </div>
         </div>

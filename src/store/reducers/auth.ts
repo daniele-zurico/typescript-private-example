@@ -3,7 +3,7 @@ import * as actionTypes from '../actions/actionTypes';
 const initialState = {
   displayName: '',
   email: '',
-  idToken: '',
+  idToken: null,
   kind: '',
   localId: '',
   registered: false,
@@ -47,7 +47,7 @@ const reducer = (state = initialState, action: any) => {
         ...state,
         displayName: '',
         email: '',
-        idToken: '',
+        idToken: null,
         kind: '',
         localId: '',
         registered: false,
@@ -58,6 +58,16 @@ const reducer = (state = initialState, action: any) => {
         },
         loading: false,
       };
+    case actionTypes.AUTH_LOGOUT:
+      return {
+        ...state,
+        displayName: '',
+        email: '',
+        idToken: null,
+        kind: '',
+        localId: '',
+        registered: false
+      }
     case actionTypes.DISMISS_ERROR:
       return {
         ...state,

@@ -1,5 +1,5 @@
 /**
- * Async component is useful to load whatever component asyncronus
+ * Async component is useful to load whatever component asynchronous
  * In this way we can do a lazy loading of the component loading the chunk only when required
  * @example
  * const asyncLogin = asyncComponent(() => import('./containers/Login/Login'));

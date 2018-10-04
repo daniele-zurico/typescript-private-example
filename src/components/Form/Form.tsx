@@ -16,7 +16,6 @@ interface IState {
 class FormElements extends React.Component<IProps, IState> {
   constructor(props: IProps) {
     super(props);
-    console.log('props are changed');
     this.state = {
       formData: this.updateStateFromProps(),
       isValid: false,

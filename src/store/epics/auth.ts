@@ -13,7 +13,7 @@ export const authUserEpic = (action$: any) =>
       ajax
         .post(
           `${environment.firebase.googleUrl}${
-            action.isRegister ? 'signupNewUser' : 'verifyPassword'
+          action.isRegister ? 'signupNewUser' : 'verifyPassword'
           }?key=${environment.firebase.apiKey}`,
           {
             email: action.email,
@@ -30,7 +30,7 @@ export const authUserEpic = (action$: any) =>
               localStorage.setItem('token', res.response.idToken);
               localStorage.setItem('expirationDate', expirationDate.toString());
               localStorage.setItem('userId', res.response.localId);
-              localStorage.setItem('token', res.response.idToken);
+              localStorage.setItem('email', res.response.email);
               return authSuccess(res.response);
             } catch (err) {
               return of(

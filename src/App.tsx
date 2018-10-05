@@ -1,4 +1,6 @@
+import { Navigation } from 'components';
 import asyncComponent from 'components/HOC/AsyncComponent';
+import { INavigationItem } from 'components/Navigation';
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { Redirect, Route, Switch } from 'react-router-dom';
@@ -10,7 +12,20 @@ interface IProps {
   isAuthenticated: boolean;
 }
 class App extends React.Component<IProps, {}> {
-
+  public items: INavigationItem[] = [
+    {
+      href: '/expenses',
+      label: 'Expenses'
+    },
+    {
+      href: '/categories',
+      label: 'Categories'
+    },
+    {
+      href: '/statements',
+      label: 'Statements'
+    }
+  ]
   public componentDidMount() {
     this.props.autoSignIn();
   }
@@ -18,9 +33,13 @@ class App extends React.Component<IProps, {}> {
   public render() {
     return (
       <div>
+
         <Switch>
           <Route path="/auth" component={AsyncAuth} />
-          <Route path="/dashboard" component={AsyncDashboard} />
+          <React.Fragment>
+            <Navigation items={this.items} />
+            <Route path="/dashboard" component={AsyncDashboard} />
+          </React.Fragment>
           <Redirect to="/auth" />
         </Switch>
       </div>

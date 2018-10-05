@@ -1,0 +1,128 @@
+@import '~styles/app';
+
+.Container {
+    display: flex;
+    flex-flow: column;
+    align-content: center;
+    align-items: center;
+    background-color: rgb(238, 238, 238);
+    height: calc(100vh - 48px);
+    padding: 15px;
+
+    .Period {
+        width: 100%;
+        text-align: right;
+        font-size: 12px;
+        color: $accent-color;
+        font-weight: bold;
+
+        .Date {
+            color: $primary-color;
+        }
+    }
+
+    .Card {
+        padding: 20px;
+        padding-bottom: 4px;
+        border: 1px solid white;
+        background-color: white;
+        margin: 20px;
+        border-radius: 5px;
+        width: 356px;
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+        align-items: center;
+        box-shadow: 5px 7px 13px 1px #3a393987;
+
+        .Fa {
+            font-size: 30px;
+            padding-bottom: 5px;
+        }
+
+        &.Primary {
+            background-image: linear-gradient($primary-color, #982f52);
+            padding: 35px;
+            max-width: 245px;
+            color: white;
+        }
+
+        &.Accent {
+            background-image: linear-gradient($accent-color, #255865);
+            padding: 35px;
+            max-width: 245px;
+            color: white;
+        }
+
+        &.Info {
+            background-image: linear-gradient(darkorange, #774202);
+            padding: 35px;
+            max-width: 245px;
+            color: white;
+        }
+
+        .Title {
+            width: 100%;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .Body {
+            width: 100%;
+            margin: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            .SpendingCircle {
+                width: 170px;
+                height: 170px;
+                border-radius: 85px;
+                border: 12px solid #2196f3;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                .Balance {
+                    color: $primary-color;
+                    font-size: 40px;
+                    font-weight: bold;
+                }
+            }
+
+            .Details {
+                text-align: left;
+                width: 100%;
+                margin-top: 12px;
+            }
+        }
+
+        .Footer {
+            border-top: 1px solid #eeeeee;
+            width: 100%;
+            text-align: right;
+            color: $accent-color;
+
+            .FooterLabel {
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+                cursor: pointer;
+
+                i {
+                    margin-left: 3px;
+                }
+            }
+        }
+    }
+
+    .CardInfoContainer {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        flex-wrap: wrap;
+        justify-content: center;
+
+
+    }
+}

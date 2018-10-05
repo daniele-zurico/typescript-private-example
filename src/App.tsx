@@ -16,25 +16,13 @@ class App extends React.Component<IProps, {}> {
   }
 
   public render() {
-    let routes;
-    if (!this.props.isAuthenticated) {
-      routes = (
-        <Switch>
-          <Route path="/auth" component={AsyncAuth} />
-          <Redirect to="/auth" />
-        </Switch>
-      );
-    }
-    else {
-      routes = (<Switch>
-        <Route path="/auth" component={AsyncAuth} />
-        <Route path="/dashboard" component={AsyncDashboard} />
-        <Redirect to="/auth" />
-      </Switch>);
-    }
     return (
       <div>
-        {routes}
+        <Switch>
+          <Route path="/auth" component={AsyncAuth} />
+          <Route path="/dashboard" component={AsyncDashboard} />
+          <Redirect to="/auth" />
+        </Switch>
       </div>
     );
   }

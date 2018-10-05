@@ -10,11 +10,11 @@ const logo = (props: IProps) => {
     return (
         <div className={containerClass}>
             <a href="/">
-                <img className={classes.logo} src={require('styles/assets/logo.png')}/>
+                <img className={classes.logo} src={require('styles/assets/logo_initials.png')} />
             </a>
         </div>
     )
-    
+
 }
 
 export default logo;

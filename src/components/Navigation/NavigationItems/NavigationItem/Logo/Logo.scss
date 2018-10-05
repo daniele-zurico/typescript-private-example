@@ -1,12 +1,13 @@
 .logoContainer {
-    a{
-        display: block;
+    a {
+        height: 48px;
+        display: flex;
+
         .logo {
             background-repeat: no-repeat;
             background-position-x: center;
-            width: 48px;
-            height: 48px;
+            height: 40px;
         }
     }
-    
+
 }

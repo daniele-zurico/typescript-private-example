@@ -7,6 +7,7 @@ interface IProp {
     class?: string,
     disabled?: boolean,
     isSubmit?: boolean,
+    floating?: boolean,
     clicked?: () => void
 };
 
@@ -19,6 +20,9 @@ export enum Type {
 
 const button = (props: IProp) => {
     const buttonClass = [classes.Button, props.class];
+    if (props.floating) {
+        buttonClass.push(classes.Floating);
+    }
     switch (props.type) {
         case Type.PRIMARY:
             buttonClass.push(classes.primary);
@@ -34,13 +38,13 @@ const button = (props: IProp) => {
             break;
     }
     return (
-        <button 
-            className = {buttonClass.join(' ')}
-            type = {props.isSubmit ? 'submit' : undefined}
-            onClick = {props.clicked}
-            disabled = {props.disabled}
+        <button
+            className={buttonClass.join(' ')}
+            type={props.isSubmit ? 'submit' : undefined}
+            onClick={props.clicked}
+            disabled={props.disabled}
         >
-        {props.label}
+            {props.label}
         </button>
     )
 }

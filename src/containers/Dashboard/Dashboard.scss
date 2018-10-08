@@ -1,83 +1,74 @@
 @import '~styles/app';
 
-.Container {
+
+
+.Period {
+    width: 100%;
+    text-align: right;
+    font-size: 12px;
+    color: $accent-color;
+    font-weight: bold;
+
+    .Date {
+        color: $primary-color;
+    }
+}
+
+.Fa {
+    font-size: 30px;
+    padding-bottom: 5px;
+}
+
+.SpendingCircle {
+    width: 170px;
+    height: 170px;
+    border-radius: 85px;
+    border: 12px solid #2196f3;
     display: flex;
-    flex-flow: column;
-    align-content: center;
     align-items: center;
-    background-color: rgb(238, 238, 238);
-    min-height: calc(100vh - 48px);
-    padding: 15px;
+    justify-content: center;
 
-    .Period {
-        width: 100%;
-        text-align: right;
-        font-size: 12px;
-        color: $accent-color;
+    .Balance {
+        color: $primary-color;
+        font-size: 40px;
         font-weight: bold;
+    }
+}
 
-        .Date {
-            color: $primary-color;
-        }
+.Details {
+    text-align: left;
+    width: 100%;
+    margin-top: 12px;
+}
+
+.FooterLabel {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    cursor: pointer;
+
+    i {
+        margin-left: 3px;
     }
 
-    .Fa {
-        font-size: 30px;
-        padding-bottom: 5px;
+    a {
+        text-decoration: none;
+        color: inherit;
     }
+}
 
-    .SpendingCircle {
-        width: 170px;
-        height: 170px;
-        border-radius: 85px;
-        border: 12px solid #2196f3;
+.CardInfoContainer {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    a {
+        text-decoration: none;
+        color: white;
         display: flex;
+        flex-direction: column;
         align-items: center;
-        justify-content: center;
-
-        .Balance {
-            color: $primary-color;
-            font-size: 40px;
-            font-weight: bold;
-        }
     }
-
-    .Details {
-        text-align: left;
-        width: 100%;
-        margin-top: 12px;
-    }
-
-    .FooterLabel {
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-        cursor: pointer;
-
-        i {
-            margin-left: 3px;
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-    }
-
-    .CardInfoContainer {
-        display: flex;
-        flex-direction: row;
-        width: 100%;
-        flex-wrap: wrap;
-        justify-content: center;
-
-        a {
-            text-decoration: none;
-            color: white;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-    }
-
 }

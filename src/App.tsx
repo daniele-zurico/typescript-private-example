@@ -5,7 +5,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { Route, RouteComponentProps, Switch, withRouter } from 'react-router-dom';
 import { authAutoSignIn } from 'store/actions';
-
+import * as classes from './App.scss';
 const AsyncAdmin = asyncComponent(() => import('containers/Admin/Admin'));
 const AsyncAuth = asyncComponent(() => import('containers/Auth/Auth'));
 const AsyncCategories = asyncComponent(() => import('containers/Categories/Categories'));
@@ -47,11 +47,14 @@ class App extends React.Component<IProps & RouteComponentProps<{}>, {}> {
           <Route exact={true} path="/auth" component={AsyncAuth} />
           <React.Fragment>
             <Navigation items={this.items} default='/dashboard' />
-            <Route path="/dashboard" component={AsyncDashboard} />
-            <Route path="/expenses" component={AsyncExpenses} />
-            <Route path="/categories" component={AsyncCategories} />
-            <Route path="/statements" component={AsyncStatements} />
-            <Route path="/admin" component={AsyncAdmin} />
+            <div className={classes.Container}>
+              <Route path="/dashboard" component={AsyncDashboard} />
+              <Route path="/expenses" component={AsyncExpenses} />
+              <Route path="/categories" component={AsyncCategories} />
+              <Route path="/statements" component={AsyncStatements} />
+              <Route path="/admin" component={AsyncAdmin} />
+            </div>
+
           </React.Fragment>
 
         </Switch>

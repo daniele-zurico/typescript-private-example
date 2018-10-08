@@ -1,4 +1,3 @@
-export const Container: string;
 export const Period: string;
 export const Date: string;
 export const Fa: string;

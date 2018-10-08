@@ -9,8 +9,7 @@ import * as classes from './Dashboard.scss';
 class Dashboard extends Component {
     public render() {
         return (
-
-            <div className={classes.Container}>
+            <React.Fragment>
                 <div className={classes.Period}>
                     Period:
                         <span className={classes.Date}>27-09-2018</span>
@@ -58,7 +57,7 @@ class Dashboard extends Component {
                         </Link>
                     } />
                 </div>
-            </div>
+            </React.Fragment>
         );
     }
 }

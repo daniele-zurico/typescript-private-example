@@ -3,4 +3,5 @@ export { default as TextArea } from './TextArea/TextArea';
 export { default as Button } from './Button/Button';
 export { default as Modal } from './Modal/Modal';
 export { default as BackDrop } from './BackDrop/BackDrop';
+export { default as Card, CardType } from './Card/Card';
 export { Type } from './Button/Button';

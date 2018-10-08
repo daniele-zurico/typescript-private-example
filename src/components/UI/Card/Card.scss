@@ -1,0 +1,61 @@
+@import '~styles/app';
+
+.Card {
+    padding: 5px 15px;
+    border: 1px solid white;
+    background-color: white;
+    margin: 20px;
+    border-radius: 5px;
+    width: 356px;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    box-shadow: 5px 7px 13px 1px #3a393987;
+    cursor: pointer;
+
+    .Fa {
+        font-size: 30px;
+        padding-bottom: 5px;
+    }
+
+    &.Primary {
+        background-image: linear-gradient($primary-color, #982f52);
+        color: white;
+    }
+
+    &.Accent {
+        background-image: linear-gradient($accent-color, #255865);
+        color: white;
+    }
+
+    &.Info {
+        background-image: linear-gradient(darkorange, #774202);
+        color: white;
+    }
+
+    &.Mini {
+        max-width: 245px;
+    }
+
+    .Title {
+        width: 100%;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    .Body {
+        width: 100%;
+        margin: 15px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .Footer {
+        border-top: 1px solid #eeeeee;
+        width: 100%;
+        text-align: right;
+        color: $accent-color;
+    }
+}

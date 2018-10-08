@@ -1,6 +1,7 @@
 import { Card, CardType } from 'components';
 import * as React from 'react';
 import { Component } from "react";
+import { Link } from 'react-router-dom';
 import * as classes from './Dashboard.scss';
 /**
  * I just started to design it not valid code
@@ -29,37 +30,35 @@ class Dashboard extends Component {
                     </React.Fragment>
                 } footer={
                     <div className={classes.FooterLabel}>
-                        Details<i className={['fa', 'fa-angle-right'].join(' ')} />
+                        <Link to='/statements'>
+                            Details<i className={['fa', 'fa-angle-right'].join(' ')} />
+                        </Link>
                     </div>
                 } />
 
                 <div className={classes.CardInfoContainer}>
                     <Card mini={true} type={CardType.Primary} body={
-                        <React.Fragment>
+                        <Link to='/expenses'>
                             <i className={['fa', 'fa-plus-circle', classes.Fa].join(' ')} />
                             <div>Add Expenses</div>
-                        </React.Fragment>
+                        </Link>
                     } />
 
                     <Card mini={true} type={CardType.Accent} body={
-                        <React.Fragment>
+                        <Link to='/categories'>
                             <i className={['fa', 'fa-plus-circle', classes.Fa].join(' ')} />
                             <div>Add New Category</div>
-                        </React.Fragment>
+                        </Link>
                     } />
 
                     <Card mini={true} type={CardType.Info} body={
-                        <React.Fragment>
+                        <Link to='/statements'>
                             <i className={['fa', 'fa-balance-scale', classes.Fa].join(' ')} />
                             <div>Statements</div>
-                        </React.Fragment>
+                        </Link>
                     } />
                 </div>
-
-
             </div>
-
-
         );
     }
 }

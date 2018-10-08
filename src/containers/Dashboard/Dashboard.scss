@@ -57,13 +57,27 @@
         i {
             margin-left: 3px;
         }
-    }
-}
 
-.CardInfoContainer {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    flex-wrap: wrap;
-    justify-content: center;
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+    }
+
+    .CardInfoContainer {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        flex-wrap: wrap;
+        justify-content: center;
+
+        a {
+            text-decoration: none;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+
 }

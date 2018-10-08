@@ -3,15 +3,21 @@ import asyncComponent from 'components/HOC/AsyncComponent';
 import { INavigationItem } from 'components/Navigation';
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { Redirect, Route, Switch } from 'react-router-dom';
+import { Route, RouteComponentProps, Switch, withRouter } from 'react-router-dom';
 import { authAutoSignIn } from 'store/actions';
+
+const AsyncAdmin = asyncComponent(() => import('containers/Admin/Admin'));
 const AsyncAuth = asyncComponent(() => import('containers/Auth/Auth'));
+const AsyncCategories = asyncComponent(() => import('containers/Categories/Categories'));
 const AsyncDashboard = asyncComponent(() => import('containers/Dashboard/Dashboard'));
+const AsyncExpenses = asyncComponent(() => import('containers/Expenses/Expenses'));
+const AsyncStatements = asyncComponent(() => import('containers/Statements/Statements'));
+
 interface IProps {
   autoSignIn: () => void;
   isAuthenticated: boolean;
 }
-class App extends React.Component<IProps, {}> {
+class App extends React.Component<IProps & RouteComponentProps<{}>, {}> {
   public items: INavigationItem[] = [
     {
       href: '/expenses',
@@ -24,6 +30,10 @@ class App extends React.Component<IProps, {}> {
     {
       href: '/statements',
       label: 'Statements'
+    },
+    {
+      href: '/admin',
+      label: 'Administration'
     }
   ]
   public componentDidMount() {
@@ -33,14 +43,17 @@ class App extends React.Component<IProps, {}> {
   public render() {
     return (
       <div>
-
         <Switch>
-          <Route path="/auth" component={AsyncAuth} />
+          <Route exact={true} path="/auth" component={AsyncAuth} />
           <React.Fragment>
-            <Navigation items={this.items} />
+            <Navigation items={this.items} default='/dashboard' />
             <Route path="/dashboard" component={AsyncDashboard} />
+            <Route path="/expenses" component={AsyncExpenses} />
+            <Route path="/categories" component={AsyncCategories} />
+            <Route path="/statements" component={AsyncStatements} />
+            <Route path="/admin" component={AsyncAdmin} />
           </React.Fragment>
-          <Redirect to="/auth" />
+
         </Switch>
       </div>
     );
@@ -55,4 +68,4 @@ const mapDispatchToProps = (dispatch: any) => ({
   autoSignIn: () => dispatch(authAutoSignIn())
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));

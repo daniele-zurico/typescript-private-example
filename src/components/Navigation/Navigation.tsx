@@ -27,12 +27,12 @@ class Navigation extends React.Component<INavigationItems, IState> {
         const navigationItems = [classes.navigationItems];
         return (
             <nav className={navigationClasses.join(' ')}>
-                <Hamburger class={classes.navigationMenu} toggleMenu={this.toggleMenuHandler}/> 
-                <Logo class={classes.navigationLogo}/>
+                <Hamburger class={classes.navigationMenu} toggleMenu={this.toggleMenuHandler} />
+                <Logo class={classes.navigationLogo} default={this.props.default} />
                 <div className={navigationItems.join(' ')}>
                     <ul>
-                        <NavigationItems items={this.props.items}/>
-                    </ul> 
+                        <NavigationItems items={this.props.items} />
+                    </ul>
                 </div>
             </nav>
         )

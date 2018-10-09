@@ -11,6 +11,7 @@ interface IProps {
   touched?: boolean;
   showEye?: boolean;
   showField?: boolean;
+  darkMode?: boolean;
   onInputChange?: (
     evt: React.ChangeEvent<HTMLInputElement>,
     id?: string
@@ -31,8 +32,15 @@ const input = (props: IProps) => {
     showField,
     onInputChange,
     onShowField,
+    darkMode,
   } = props;
-  let hintOrError = <div className={classes.hint}>{hint}</div>;
+  let hintOrError = (
+    <div
+      className={[classes.hint, darkMode ? classes.darkLabel : ''].join(' ')}
+    >
+      {hint}
+    </div>
+  );
   if (!valid && touched) {
     hintOrError = <div className={classes.errorMessage}>{errorMessage}</div>;
   }
@@ -44,11 +52,12 @@ const input = (props: IProps) => {
   }
   return (
     <div className={classes.formInput}>
-      <label>
+      <label className={darkMode ? classes.darkLabel : ''}>
         <input
           required={true}
           type={type}
           value={value}
+          className={darkMode ? classes.darkLabel : ''}
           onChange={onInputChange}
         />
         <span className={classes.placeholder}>{placeholder}</span>

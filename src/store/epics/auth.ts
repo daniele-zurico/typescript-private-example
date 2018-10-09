@@ -13,7 +13,7 @@ export const authUserEpic = (action$: any) =>
       ajax
         .post(
           `${environment.firebase.googleUrl}${
-          action.isRegister ? 'signupNewUser' : 'verifyPassword'
+            action.isRegister ? 'signupNewUser' : 'verifyPassword'
           }?key=${environment.firebase.apiKey}`,
           {
             email: action.email,

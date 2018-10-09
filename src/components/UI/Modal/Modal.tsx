@@ -7,6 +7,7 @@ interface IProps {
   isOpen: any;
   header: string;
   type?: ModalType;
+  class?: any;
   onDismiss: () => void;
   children?: any;
 }
@@ -48,7 +49,7 @@ const modal = (props: IProps) => {
           exitActive: classes.ModalClose,
         }}
       >
-        <div className={classes.ModalContent}>
+        <div className={[classes.ModalContent, props.class].join(' ')}>
           <div className={classes.Close} onClick={props.onDismiss}>
             X
           </div>

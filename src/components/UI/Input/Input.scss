@@ -17,6 +17,10 @@
     display: block;
     width: 100%;
     min-height: $input-height + $input-top;
+    color: white;
+    &.darkLabel {
+      color: #333;
+    }
   }
 
   .placeholder {
@@ -27,7 +31,7 @@
     font-size: $placeholder-font-size;
     transition: all $placeholder-transition;
     width: 80%;
-    color: white;
+
     cursor: text;
   }
 
@@ -45,6 +49,9 @@
     color: white;
     padding: 0;
     margin: 0;
+    &.darkLabel {
+      color: #333;
+    }
   }
 
   input {
@@ -69,6 +76,9 @@
     text-align: right;
     color: #dedede;
     margin-top: 2px;
+    &.darkLabel {
+      color: #333;
+    }
   }
 
   .errorMessage {

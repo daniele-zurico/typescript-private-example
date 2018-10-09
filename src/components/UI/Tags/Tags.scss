@@ -1,0 +1,23 @@
+.TagContainer {
+  display: flex;
+  border: 1px solid #999;
+  border-radius: 13px;
+  padding: 2px;
+  justify-content: space-around;
+  .Tag {
+    width: 24px;
+    height: 24px;
+    border-radius: 12px;
+    margin-right: 8px;
+    &.Selected {
+      background: #f0edcc;
+      background-clip: padding-box; /* Background stops at border */
+      border: 3px solid rgba(111, 48, 43, 0.01);
+      border-radius: 24px;
+      box-shadow: 0px 0px 2px 2px #bbb5b5; /* Inner shadow (bottom + right) */
+    }
+    &:last-child {
+      margin-right: 0px;
+    }
+  }
+}

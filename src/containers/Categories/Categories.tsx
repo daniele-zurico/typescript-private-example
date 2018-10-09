@@ -1,11 +1,11 @@
 import { IError } from 'common/interfaces';
-import { Button, Input, Modal, Tags, Type } from 'components';
+import { Button, Type } from 'components';
 import * as React from 'react';
 import { Component } from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { createCategoryStart } from 'store/actions';
-import * as classes from './Categories.scss';
+import AddCategory from './AddCategory/AddCategory';
 interface IProps {
   userId: string;
   createCategory: (id: string, category: string, tagId: number) => void;
@@ -102,58 +102,29 @@ class Categories extends Component<IProps, IState> {
     this.setState({ category: evt.target.value });
   };
 
-  public createCategory = (evt: React.FormEvent) => {
+  public createCategoryHandler = (evt: React.FormEvent) => {
     evt.preventDefault();
     this.props.createCategory(
       this.props.userId,
       this.state.category,
       this.state.selectedTag
     );
-    console.log(this.props.userId);
+    this.setState({ isModalOpen: false });
   };
 
   public render() {
     return (
       <React.Fragment>
-        <Modal
-          class={classes.Modal}
-          header="Add a new Category"
-          isOpen={this.state.isModalOpen}
-          onDismiss={this.dismissModalHandler}
-        >
-          <form className={classes.Form} onSubmit={this.createCategory}>
-            <Input
-              hint="Choose the name of your category"
-              placeholder="Category name"
-              value={this.state.category}
-              onInputChange={this.categoryHandler}
-              darkMode={true}
-            />
-            <Tags
-              tags={this.state.tags}
-              onSelectedTag={this.selectedTagHandler}
-            />
-            <div className={classes.ButtonContainer}>
-              <Button
-                type={Type.WARN}
-                label="Cancel"
-                clicked={this.dismissModalHandler}
-              />
-              <Button
-                type={Type.PRIMARY}
-                label="Confirm"
-                isSubmit={true}
-                darkMode={true}
-                disabled={this.state.category === ''}
-              />
-            </div>
-            {this.props.error.message && (
-              <div className={classes.Error}>
-                ({this.props.error.code}) {this.props.error.message}
-              </div>
-            )}
-          </form>
-        </Modal>
+        <AddCategory
+          tags={this.state.tags}
+          category={this.state.category}
+          error={this.props.error}
+          isModalOpen={this.state.isModalOpen}
+          onCategoryClick={this.categoryHandler}
+          onCreateCategory={this.createCategoryHandler}
+          onDismissModal={this.dismissModalHandler}
+          onSelectedTag={this.selectedTagHandler}
+        />
         <Button
           label="+"
           type={Type.PRIMARY}

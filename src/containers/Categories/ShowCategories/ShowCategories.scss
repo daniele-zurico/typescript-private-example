@@ -1,0 +1,13 @@
+.CategoriesContainer {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  flex-wrap: wrap;
+  color: #484747;
+  text-transform: capitalize;
+}
+.Fa {
+  font-size: 30px;
+  padding-bottom: 5px;
+  color: white;
+}

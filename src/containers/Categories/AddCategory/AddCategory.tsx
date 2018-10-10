@@ -15,6 +15,11 @@ interface IProps {
 }
 
 const addCategory = (props: IProps) => {
+  const onCreateCategorySuccess = (evt: React.FormEvent) => {
+    evt.stopPropagation();
+    props.onCreateCategory(evt);
+  };
+
   return (
     <Modal
       class={classes.Modal}
@@ -22,7 +27,7 @@ const addCategory = (props: IProps) => {
       isOpen={props.isModalOpen}
       onDismiss={props.onDismissModal}
     >
-      <form className={classes.Form} onSubmit={props.onCreateCategory}>
+      <form className={classes.Form} onSubmit={onCreateCategorySuccess}>
         <Input
           hint="Choose the name of your category"
           placeholder="Category name"
@@ -45,7 +50,7 @@ const addCategory = (props: IProps) => {
             disabled={props.category === ''}
           />
         </div>
-        {props.error.message && (
+        {props.error && (
           <div className={classes.Error}>
             ({props.error.code}) {props.error.message}
           </div>

@@ -13,10 +13,25 @@ export const createCategoryStart = (
 });
 
 export const createCategorySuccess = () => ({
-  type: actionTypes.CREATE_CATEGORY_SUCCESS,
+  type: actionTypes.LOAD_CATEGORIES_START,
 });
 
 export const createCategoryFail = (error: IError) => ({
   type: actionTypes.CREATE_CATEGORY_FAIL,
+  error,
+});
+
+export const loadCategoriesStart = (id: string) => ({
+  type: actionTypes.LOAD_CATEGORIES_START,
+  id,
+});
+
+export const loadCategoriesSuccess = (categories: any) => ({
+  type: actionTypes.LOAD_CATEGORIES_SUCCESS,
+  categories,
+});
+
+export const loadCategoriesFail = (error: IError) => ({
+  type: actionTypes.LOAD_CATEGORIES_FAIL,
   error,
 });

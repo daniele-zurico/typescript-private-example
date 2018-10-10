@@ -9,4 +9,7 @@ export {
   createCategoryStart,
   createCategorySuccess,
   createCategoryFail,
+  loadCategoriesStart,
+  loadCategoriesSuccess,
+  loadCategoriesFail,
 } from './categories';

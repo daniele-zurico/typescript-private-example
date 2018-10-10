@@ -4,12 +4,16 @@ import * as React from 'react';
 import { Component } from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
-import { createCategoryStart } from 'store/actions';
+import { createCategoryStart, loadCategoriesStart } from 'store/actions';
 import AddCategory from './AddCategory/AddCategory';
+import ShowCategories from './ShowCategories/ShowCategories';
 interface IProps {
   userId: string;
-  createCategory: (id: string, category: string, tagId: number) => void;
   error: IError;
+  createCategory: (id: string, category: string, tagId: number) => void;
+  loadCategories: (id: string) => void;
+  categories: any[];
+  loading: boolean;
 }
 
 interface IState {
@@ -75,6 +79,10 @@ class Categories extends Component<IProps, IState> {
     ],
   };
 
+  public componentDidMount() {
+    this.props.loadCategories(this.props.userId);
+  }
+
   public dismissModalHandler = () => {
     this.setState({ isModalOpen: false });
   };
@@ -103,7 +111,6 @@ class Categories extends Component<IProps, IState> {
   };
 
   public createCategoryHandler = (evt: React.FormEvent) => {
-    evt.preventDefault();
     this.props.createCategory(
       this.props.userId,
       this.state.category,
@@ -115,6 +122,11 @@ class Categories extends Component<IProps, IState> {
   public render() {
     return (
       <React.Fragment>
+        <ShowCategories
+          categories={this.props.categories}
+          tags={this.state.tags}
+        />
+
         <AddCategory
           tags={this.state.tags}
           category={this.state.category}
@@ -139,11 +151,14 @@ class Categories extends Component<IProps, IState> {
 const mapStateToProps = (state: any) => ({
   userId: state.auth.localId,
   error: state.categories.error,
+  categories: state.categories.categories,
+  loading: state.categories.loading,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   createCategory: (id: string, category: string, tagId: number) =>
     dispatch(createCategoryStart(id, category, tagId)),
+  loadCategories: (id: string) => dispatch(loadCategoriesStart(id)),
 });
 
 export default connect(

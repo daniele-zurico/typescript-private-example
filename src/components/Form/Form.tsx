@@ -93,6 +93,7 @@ class FormElements extends React.Component<IProps, IState> {
         isSubmit,
         valid,
         touched,
+        darkMode,
       } = el.element;
 
       switch (component) {
@@ -110,6 +111,7 @@ class FormElements extends React.Component<IProps, IState> {
               errorMessage={errorMessage}
               onInputChange={evt => this.inputHandler(evt, el.id)}
               showField={showField}
+              darkMode={darkMode}
               onShowField={evt => this.showFieldHandler(evt, el.id)}
             />
           );
@@ -122,6 +124,7 @@ class FormElements extends React.Component<IProps, IState> {
               disabled={!isValid}
               class={el.element.class}
               isSubmit={isSubmit}
+              darkMode={darkMode}
             />
           );
           break;

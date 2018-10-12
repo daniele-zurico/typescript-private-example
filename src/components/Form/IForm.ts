@@ -12,6 +12,7 @@ interface IInput {
   value?: string;
   errorMessage?: string;
   showEye?: boolean;
+  darkMode?: boolean;
 }
 
 export interface IValidation {
@@ -19,6 +20,7 @@ export interface IValidation {
   min?: number;
   required: boolean;
   email?: string;
+  darkMode?: boolean;
 }
 
 interface IButton {

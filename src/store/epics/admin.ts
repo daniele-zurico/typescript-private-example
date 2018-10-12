@@ -14,10 +14,11 @@ export const addIncomeEpic = (action$: any) =>
                 action.id
                 }/income.json`,
                 JSON.stringify({
-                    amount: action.amount
+                    amount: action.amount,
+                    date: action.date
                 })
             ).pipe(
-                map((res: any) => createIncomeSuccess()),
+                map((res: any) => createIncomeSuccess(action.amount, action.date)),
                 catchError((err: any) => of(createIncomeFailed({ code: err.status, message: err.response.error, })))
             )
         )
@@ -32,8 +33,13 @@ export const loadIncomeEpic = (action$: any) =>
                 action.id
                 }/income.json`
             ).pipe(
-                map((res: any) => loadIncomeSuccess(res.response.amount)),
-                catchError((err: any) => of(loadIncomeFailed({ code: err.status, message: err.response.error, })))
+                map((res: any) => loadIncomeSuccess(res.response.amount, res.response.date)),
+                catchError((err: any) => {
+                    if (!err.status && !err.response) {
+                        return of(loadIncomeFailed({ code: 400, message: 'table not found', }));
+                    }
+                    return of(loadIncomeFailed({ code: err.status || 400, message: err.response.error || 'table not found', }));
+                })
             )
         )
     )

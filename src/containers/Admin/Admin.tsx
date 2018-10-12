@@ -9,7 +9,7 @@ import adminForm from './adminForm';
 interface IProps {
     userId: string;
     income: string;
-    addIncome: (id: string, amount: string) => void;
+    addIncome: (id: string, amount: string, date: string) => void;
     loadIncome: (id: string) => void;
 }
 class Admin extends Component<IProps, any> {
@@ -19,7 +19,7 @@ class Admin extends Component<IProps, any> {
     }
 
     public handleSubmit = (evt: React.FormEvent) => {
-        this.props.addIncome(this.props.userId, evt[0].element.value);
+        this.props.addIncome(this.props.userId, evt[0].element.value, evt[1].element.value);
     };
 
     public render() {
@@ -34,7 +34,7 @@ const mapStateToProps = (state: any) => ({
 
 const mapDispatchToProps = (dispatch: any) => ({
     loadIncome: (id: string) => dispatch(loadIncomeStart(id)),
-    addIncome: (id: string, amount: string) => dispatch(createIncomeStart(id, amount))
+    addIncome: (id: string, amount: string, date: string) => dispatch(createIncomeStart(id, amount, date))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Admin);

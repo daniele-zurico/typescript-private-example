@@ -1,0 +1,32 @@
+.CalendarContainer {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    width: 220px;
+
+
+    select {
+        width: 135px;
+        padding: 5px 35px 5px 5px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        background: #eee;
+    }
+
+
+    .MonthsContainer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .DaysContainer {
+        margin-top: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+}

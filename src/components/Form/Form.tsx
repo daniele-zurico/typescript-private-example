@@ -1,5 +1,5 @@
 import { isFormValid, validateElement } from 'common/util/util';
-import { Button, Input } from 'components';
+import { Button, Calendar, Input } from 'components';
 import * as React from 'react';
 import * as classes from './Form.scss';
 
@@ -74,6 +74,26 @@ class FormElements extends React.Component<IProps, IState> {
     this.setState({ formData: updatedValue });
   };
 
+  public selectDayHandler = (date: number, id: number) => {
+
+    const updatedValue = this.state.formData.map((el: any) => {
+      if (el.id === id) {
+        return {
+          ...el,
+          element: {
+            ...el.element,
+            value: date,
+            valid: validateElement(date.toString(), el.element.validation),
+          }
+        }
+      } else {
+        return el;
+      }
+    });
+    this.setState({ formData: updatedValue, isValid: isFormValid(updatedValue) });
+
+  }
+
   public render() {
     const form: any[] = [];
     const formButtons: any[] = [];
@@ -125,6 +145,14 @@ class FormElements extends React.Component<IProps, IState> {
               class={el.element.class}
               isSubmit={isSubmit}
               darkMode={darkMode}
+            />
+          );
+          break;
+        case 'date':
+          form.push(
+            <Calendar
+              key={id}
+              onSelectDay={(date) => this.selectDayHandler(date, el.id)}
             />
           );
           break;

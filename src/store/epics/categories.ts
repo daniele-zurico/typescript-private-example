@@ -17,7 +17,7 @@ export const createCategoryEpic = (action$: any) =>
       ajax
         .post(
           `${environment.firebase.databaseURL}/user/${
-            action.id
+          action.id
           }/categories.json`,
           JSON.stringify({
             category: action.category,
@@ -45,7 +45,7 @@ export const loadCategoriesEpic = (action$: any) =>
       ajax
         .get(
           `${environment.firebase.databaseURL}/user/${
-            action.id
+          action.id
           }/categories.json`
         )
         .pipe(

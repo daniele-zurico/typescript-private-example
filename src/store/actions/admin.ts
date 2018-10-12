@@ -1,14 +1,17 @@
 import { IError } from "common/interfaces";
 import * as actionTypes from './actionTypes';
 
-export const createIncomeStart = (id: string, amount: string) => ({
+export const createIncomeStart = (id: string, amount: string, date: string) => ({
     type: actionTypes.CREATE_INCOME_START,
     id,
-    amount
+    amount,
+    date
 });
 
-export const createIncomeSuccess = () => ({
-    type: actionTypes.CREATE_INCOME_SUCCESS
+export const createIncomeSuccess = (amount: string, date: string) => ({
+    type: actionTypes.CREATE_INCOME_SUCCESS,
+    amount,
+    date
 });
 
 export const createIncomeFailed = (error: IError) => ({
@@ -21,9 +24,10 @@ export const loadIncomeStart = (id: string) => ({
     id
 });
 
-export const loadIncomeSuccess = (income: string) => ({
+export const loadIncomeSuccess = (income: string, date: string) => ({
     type: actionTypes.LOAD_INCOME_SUCCESS,
-    income
+    income,
+    date
 });
 
 export const loadIncomeFailed = (error: IError) => ({

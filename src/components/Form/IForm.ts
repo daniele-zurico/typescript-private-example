@@ -1,5 +1,5 @@
 export interface IElement {
-  [key: string]: IButton | IInput;
+  [key: string]: IButton | IInput | IDate;
 }
 
 interface IInput {
@@ -30,4 +30,11 @@ interface IButton {
   label?: string;
   class?: any;
   isSubmit?: boolean;
+}
+
+interface IDate {
+  component: string;
+  id: number;
+  value: string;
+  validation?: IValidation;
 }

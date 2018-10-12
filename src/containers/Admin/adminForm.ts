@@ -14,6 +14,14 @@ export const adminForm = (income: string): IElement => ({
     value: income ? income : '',
     darkMode: true,
   },
+  date: {
+    component: 'date',
+    value: '',
+    id: 2,
+    validation: {
+      required: true,
+    },
+  },
   confirmBtn: {
     component: 'button',
     disabled: true,

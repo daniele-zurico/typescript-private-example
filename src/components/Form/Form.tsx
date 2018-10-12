@@ -1,5 +1,5 @@
 import { isFormValid, validateElement } from 'common/util/util';
-import { Button, Calendar, Input } from 'components';
+import { Button, Calendar, Input, Select } from 'components';
 import * as React from 'react';
 import * as classes from './Form.scss';
 
@@ -86,6 +86,25 @@ class FormElements extends React.Component<IProps, IState> {
     this.setState({ formData: updatedValue, isValid: isFormValid(updatedValue) });
   }
 
+  public onSelectedValue = (value: any, id: any) => {
+
+    const updatedValue = this.state.formData.map((el: any) => {
+      if (el.id === id) {
+        return {
+          ...el,
+          element: {
+            ...el.element,
+            value: value.currentTarget.value,
+            valid: validateElement(value.currentTarget.value.toString(), el.element.validation),
+          }
+        }
+      } else {
+        return el;
+      }
+    });
+    this.setState({ formData: updatedValue, isValid: isFormValid(updatedValue) });
+  }
+
   public render() {
     const form: any[] = [];
     const formButtons: any[] = [];
@@ -106,6 +125,7 @@ class FormElements extends React.Component<IProps, IState> {
         valid,
         touched,
         darkMode,
+        data
       } = el.element;
 
       switch (component) {
@@ -145,6 +165,16 @@ class FormElements extends React.Component<IProps, IState> {
             <Calendar
               key={id}
               onSelectDay={(date) => this.selectDayHandler(date, el.id)}
+            />
+          );
+          break;
+        case 'select':
+          form.push(
+            <Select
+              key={id}
+              data={data}
+              label={label}
+              onChangeValue={(selValue) => this.onSelectedValue(selValue, el.id)}
             />
           );
           break;

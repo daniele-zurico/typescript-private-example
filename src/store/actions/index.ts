@@ -21,3 +21,8 @@ export {
   loadIncomeSuccess,
   loadIncomeFailed
 } from './admin';
+export {
+  createExpensesStart,
+  createExpensesSuccess,
+  createExpensesFail
+} from './expenses';

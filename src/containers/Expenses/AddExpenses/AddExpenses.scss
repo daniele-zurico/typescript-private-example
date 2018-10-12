@@ -1,13 +1,17 @@
 .Modal {
-    height: 380px;
+    height: 420px;
 
     form {
         position: relative;
         padding: 0;
         top: 0;
 
-        div:first-child {
+        div {
             margin-top: 0
+        }
+
+        button {
+            margin-top: 20px;
         }
 
     }

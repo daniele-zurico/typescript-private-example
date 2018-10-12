@@ -1,0 +1,14 @@
+.Modal {
+    height: 380px;
+
+    form {
+        position: relative;
+        padding: 0;
+        top: 0;
+
+        div:first-child {
+            margin-top: 0
+        }
+
+    }
+}

@@ -1,8 +1,9 @@
-import { FormElements } from 'components';
+import { Card, FormElements } from 'components';
 import * as React from 'react';
 import { Component } from 'react';
 import { connect } from 'react-redux';
 import { createIncomeStart, loadIncomeStart } from 'store/actions';
+import * as classes from './Admin.scss';
 import adminForm from './adminForm';
 
 
@@ -23,7 +24,9 @@ class Admin extends Component<IProps, any> {
     };
 
     public render() {
-        return <FormElements key={this.props.income} data={adminForm(this.props.income)} onSubmit={this.handleSubmit} />;
+        return <Card class={classes.FullCard} body={
+            <FormElements key={this.props.income} data={adminForm(this.props.income)} onSubmit={this.handleSubmit} />
+        } />
     }
 }
 

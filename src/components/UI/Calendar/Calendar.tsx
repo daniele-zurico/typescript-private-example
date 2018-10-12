@@ -46,7 +46,7 @@ class Calendar extends Component<IProps, IState> {
                 <div className={classes.MonthsContainer}>
                     <span>Month</span>
                     <select onChange={this.handleMonthChange}>
-                        <option>Month</option>
+                        <option>Select</option>
                         {months}
                     </select>
                 </div>
@@ -54,7 +54,7 @@ class Calendar extends Component<IProps, IState> {
                 <div className={classes.DaysContainer}>
                     <span>Day</span>
                     <select onChange={this.handleDayChange}>
-                        <option>Day</option>
+                        <option>Select</option>
                         {days}
                     </select>
                 </div>

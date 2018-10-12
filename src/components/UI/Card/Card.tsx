@@ -14,10 +14,11 @@ interface IProps {
   mini?: boolean;
   type?: CardType;
   customColor?: string;
+  class?: string;
 }
 
 const card = (props: IProps) => {
-  const cardTypeClass = [classes.Card];
+  const cardTypeClass = [classes.Card, props.class];
   if (props.type) {
     switch (props.type) {
       case CardType.Primary:

@@ -22,10 +22,7 @@ class FormElements extends React.Component<IProps, IState> {
     };
   }
 
-  public inputHandler = (
-    evt: React.ChangeEvent<HTMLInputElement>,
-    id: number
-  ) => {
+  public inputHandler = (evt: React.ChangeEvent<HTMLInputElement>, id: number) => {
     // Update the value of the input
     const newForm = this.state.formData.map((el: any) => {
       if (el.id === id && el.element.component !== 'button') {
@@ -53,10 +50,7 @@ class FormElements extends React.Component<IProps, IState> {
     this.props.onSubmit(this.state.formData);
   };
 
-  public showFieldHandler = (
-    evt: React.MouseEvent<HTMLElement>,
-    id: number
-  ) => {
+  public showFieldHandler = (evt: React.MouseEvent<HTMLElement>, id: number) => {
     const updatedValue = this.state.formData.map((el: any) => {
       if (el.id === id) {
         return {
@@ -75,7 +69,6 @@ class FormElements extends React.Component<IProps, IState> {
   };
 
   public selectDayHandler = (date: number, id: number) => {
-
     const updatedValue = this.state.formData.map((el: any) => {
       if (el.id === id) {
         return {
@@ -91,7 +84,6 @@ class FormElements extends React.Component<IProps, IState> {
       }
     });
     this.setState({ formData: updatedValue, isValid: isFormValid(updatedValue) });
-
   }
 
   public render() {

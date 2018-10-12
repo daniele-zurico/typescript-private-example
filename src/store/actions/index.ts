@@ -13,3 +13,11 @@ export {
   loadCategoriesSuccess,
   loadCategoriesFail,
 } from './categories';
+export {
+  createIncomeStart,
+  createIncomeSuccess,
+  createIncomeFailed,
+  loadIncomeStart,
+  loadIncomeSuccess,
+  loadIncomeFailed
+} from './admin';

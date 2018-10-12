@@ -1,6 +1,6 @@
 import { IElement } from 'components';
 
-export const adminForm: IElement = {
+export const adminForm = (income: string): IElement => ({
   totalIncome: {
     component: 'input',
     hint: 'Insert your total Income',
@@ -11,7 +11,7 @@ export const adminForm: IElement = {
       required: true,
     },
     errorMessage: 'Your income is required',
-    value: '',
+    value: income ? income : '',
     darkMode: true,
   },
   confirmBtn: {
@@ -22,6 +22,6 @@ export const adminForm: IElement = {
     isSubmit: true,
     darkMode: true,
   },
-};
+});
 
 export default adminForm;

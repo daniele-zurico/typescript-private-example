@@ -19,10 +19,13 @@ export {
   createIncomeFailed,
   loadIncomeStart,
   loadIncomeSuccess,
-  loadIncomeFailed
+  loadIncomeFailed,
 } from './admin';
 export {
   createExpensesStart,
   createExpensesSuccess,
-  createExpensesFail
+  createExpensesFail,
+  loadExpensesStart,
+  loadExpensesSuccess,
+  loadExpensesFail,
 } from './expenses';

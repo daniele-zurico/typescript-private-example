@@ -2,7 +2,7 @@ import { combineEpics } from 'redux-observable';
 import { addIncomeEpic, loadIncomeEpic } from './admin';
 import { authUserEpic } from './auth';
 import { createCategoryEpic, loadCategoriesEpic } from './categories';
-import { createExpensesEpic } from './expenses';
+import { createExpensesEpic, loadExpensesEpic } from './expenses';
 
 export default combineEpics(
   authUserEpic,
@@ -10,5 +10,6 @@ export default combineEpics(
   loadCategoriesEpic,
   addIncomeEpic,
   loadIncomeEpic,
-  createExpensesEpic
+  createExpensesEpic,
+  loadExpensesEpic
 );

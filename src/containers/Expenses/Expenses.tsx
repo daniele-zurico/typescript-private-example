@@ -1,4 +1,4 @@
-import { Button, Type } from 'components';
+import { Button, Spinner, Type } from 'components';
 import * as React from 'react';
 import { Component } from 'react';
 import { connect } from 'react-redux';
@@ -52,6 +52,7 @@ class Expenses extends Component<IProps, IState> {
   public render() {
     return (
       <React.Fragment>
+        <Spinner />
         <AddExpenses
           isModalOpen={this.state.isModalOpen}
           onDismissModal={() => this.setState({ isModalOpen: false })}

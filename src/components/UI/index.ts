@@ -15,3 +15,4 @@ export {
   default as ExpansionPanelBody,
 } from './ExpansionPanel/ExpansionPanelBody/ExpansionPanelBody';
 export { Type } from './Button/Button';
+export { default as Spinner } from './Spinner/Spinner';

@@ -52,6 +52,7 @@ const showExpenses = (props: IProps) => {
         }}
         rootProps={{ 'data-testid': '3' }}
       />
+      <div className={classes.Details}>Details</div>
       <div style={{ marginTop: '10px', width: '100%' }}>{expansionPanels}</div>
     </React.Fragment>
   );

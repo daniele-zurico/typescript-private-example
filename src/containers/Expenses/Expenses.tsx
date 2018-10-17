@@ -7,6 +7,7 @@ import {
   loadCategoriesStart,
   loadExpensesStart,
 } from 'store/actions';
+import { getExpensesByCategory } from 'store/selectors';
 import AddExpenses from './AddExpenses/AddExpenses';
 import ShowExpenses from './ShowExpenses/ShowExpenses';
 
@@ -16,7 +17,7 @@ interface IState {
 
 interface IProps {
   categories: any[];
-  expenses: any[];
+  expensesByCategory: any[];
   userId: string;
   loadCategories: (id: string) => void;
   loadExpenses: (id: string) => void;
@@ -57,10 +58,7 @@ class Expenses extends Component<IProps, IState> {
           categories={this.props.categories}
           onAddExpenses={this.addExpensesHandler}
         />
-        <ShowExpenses
-          expenses={this.props.expenses}
-          categories={this.props.categories}
-        />
+        <ShowExpenses expensesByCategory={this.props.expensesByCategory} />
         <Button
           label="+"
           type={Type.PRIMARY}
@@ -74,8 +72,8 @@ class Expenses extends Component<IProps, IState> {
 
 const mapStateToProps = (state: any) => ({
   categories: state.categories.categories,
-  expenses: state.expenses.expenses,
   userId: state.auth.localId,
+  expensesByCategory: getExpensesByCategory(state),
 });
 
 const mapDispatchToProps = (dispatch: any) => ({

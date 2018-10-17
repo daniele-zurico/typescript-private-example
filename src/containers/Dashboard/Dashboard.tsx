@@ -4,6 +4,7 @@ import { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { loadExpensesStart, loadIncomeStart } from 'store/actions';
+import { getTotalExpensesAmount } from 'store/selectors';
 import * as classes from './Dashboard.scss';
 /**
  * I just started to design it not valid code
@@ -13,7 +14,7 @@ interface IProps {
   userId: string;
   loadIncome: (id: string) => any;
   loadExpenses: (id: string) => any;
-  expenses: any[];
+  expensesTotAmount: number;
 }
 
 class Dashboard extends Component<IProps, {}> {
@@ -23,14 +24,7 @@ class Dashboard extends Component<IProps, {}> {
     this.props.loadExpenses(userId);
   }
   public render() {
-    const { income, expenses } = this.props;
-    let expensesTotAmount = 0;
-    if (expenses.length > 0) {
-      expensesTotAmount = expenses.reduce((sum: number, expense: any) => {
-        return sum + parseFloat(expense.amount);
-      }, 0);
-    }
-
+    const { income, expensesTotAmount } = this.props;
     return (
       <React.Fragment>
         <div className={classes.Period}>
@@ -114,7 +108,7 @@ class Dashboard extends Component<IProps, {}> {
 const mapStateToProps = (state: any) => ({
   userId: state.auth.localId,
   income: state.admin.income,
-  expenses: state.expenses.expenses,
+  expensesTotAmount: getTotalExpensesAmount(state.expenses),
 });
 
 const mapDispatchToProps = (dispatch: any) => ({

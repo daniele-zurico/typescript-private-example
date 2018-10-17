@@ -4,35 +4,27 @@ import {
   ExpansionPanelHeader,
 } from 'components';
 import * as React from 'react';
+import { Chart } from 'react-google-charts';
 import * as classes from './ShowExpenses.scss';
 
 interface IProps {
-  expenses: any[];
-  categories: any[];
+  expensesByCategory: any[];
 }
 
 const showExpenses = (props: IProps) => {
-  const mapCategoriesToExpenses: any[] = [];
-  props.categories.map(cat => {
-    const categories = {
-      ...cat,
-      expenses: [],
-    };
-
-    props.expenses.map(exp => {
-      if (exp.category === cat.id) {
-        categories.expenses.push({
-          ...exp,
-        });
-      }
-    });
-    if (categories.expenses.length > 0) {
-      mapCategoriesToExpenses.push(categories);
-    }
+  const dataChart: any[] = [['Task', 'Hours per Day']];
+  props.expensesByCategory.forEach((cat: any) => {
+    dataChart.push([cat.category, cat.amount]);
   });
-  const expansionPanels = mapCategoriesToExpenses.map((cat, key) => (
+
+  const expansionPanels = props.expensesByCategory.map((cat, key) => (
     <ExpansionPanel key={key}>
-      <ExpansionPanelHeader>{cat.category}</ExpansionPanelHeader>
+      <ExpansionPanelHeader>
+        <div className={classes.Expense}>
+          <div>{cat.category}</div>
+          <div>£ {cat.amount}</div>
+        </div>
+      </ExpansionPanelHeader>
       {cat.expenses.map((expense: any, id: number) => (
         <ExpansionPanelBody key={id}>
           <div className={classes.Expense}>
@@ -44,7 +36,25 @@ const showExpenses = (props: IProps) => {
     </ExpansionPanel>
   ));
 
-  return <React.Fragment>{expansionPanels}</React.Fragment>;
+  return (
+    <React.Fragment>
+      <Chart
+        width={'100%'}
+        height={'300px'}
+        chartType="PieChart"
+        loader={<div>Loading Chart</div>}
+        data={dataChart}
+        options={{
+          title: 'My Monthly expenses by category',
+          // Just add this option
+          pieHole: 0.4,
+          legend: 'bottom',
+        }}
+        rootProps={{ 'data-testid': '3' }}
+      />
+      <div style={{ marginTop: '10px', width: '100%' }}>{expansionPanels}</div>
+    </React.Fragment>
+  );
 };
 
 export default showExpenses;

@@ -1,0 +1,19 @@
+.Container {
+  background-color: white;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  box-shadow: 1px 1px 2px 0px #848181;
+  flex-direction: column;
+  padding: 0 10px;
+  border-bottom: 1px solid #efeeee;
+  cursor: pointer;
+  &.Open {
+    &:first-child {
+      margin-top: 0px;
+    }
+    margin: 16px 0;
+    display: flex;
+    transition: margin 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  }
+}

@@ -1,5 +1,10 @@
-import { ExpansionPanels } from 'components';
+import {
+  ExpansionPanel,
+  ExpansionPanelBody,
+  ExpansionPanelHeader,
+} from 'components';
 import * as React from 'react';
+import * as classes from './ShowExpenses.scss';
 
 interface IProps {
   expenses: any[];
@@ -13,6 +18,7 @@ const showExpenses = (props: IProps) => {
       ...cat,
       expenses: [],
     };
+
     props.expenses.map(exp => {
       if (exp.category === cat.id) {
         categories.expenses.push({
@@ -20,33 +26,25 @@ const showExpenses = (props: IProps) => {
         });
       }
     });
-    mapCategoriesToExpenses.push(categories);
+    if (categories.expenses.length > 0) {
+      mapCategoriesToExpenses.push(categories);
+    }
   });
+  const expansionPanels = mapCategoriesToExpenses.map((cat, key) => (
+    <ExpansionPanel key={key}>
+      <ExpansionPanelHeader>{cat.category}</ExpansionPanelHeader>
+      {cat.expenses.map((expense: any, id: number) => (
+        <ExpansionPanelBody key={id}>
+          <div className={classes.Expense}>
+            <div>{expense.name}</div>
+            <div>£ {expense.amount}</div>
+          </div>
+        </ExpansionPanelBody>
+      ))}
+    </ExpansionPanel>
+  ));
 
-  // const expByCat: any[] = [];
-  // mapCategoriesToExpenses.map(cat => {
-  //   if (cat.expenses.length !== 0) {
-  //     const expenses = cat.expenses.map((e: any) => (
-  //       <div key={e.id}>
-  //         <span>{e.name}</span>
-  //         <span>{e.amount}</span>
-  //       </div>
-  //     ));
-  //     expByCat.push(
-  //       <div>
-  //         <div key={cat.id}>{cat.category}</div>
-  //         <div>{expenses}</div>
-  //       </div>
-  //     );
-  //   }
-  // });
-
-  return (
-    <React.Fragment>
-      {/* <div>{expByCat}</div> */}
-      <ExpansionPanels titles={['test', 'test2', 'test3']} />
-    </React.Fragment>
-  );
+  return <React.Fragment>{expansionPanels}</React.Fragment>;
 };
 
 export default showExpenses;

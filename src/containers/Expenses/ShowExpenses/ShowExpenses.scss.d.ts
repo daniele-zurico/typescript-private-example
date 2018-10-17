@@ -1,0 +1,1 @@
+export const Expense: string;

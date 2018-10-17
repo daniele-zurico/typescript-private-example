@@ -7,5 +7,11 @@ export { default as Card, CardType } from './Card/Card';
 export { default as Tags } from './Tags/Tags';
 export { default as Calendar } from './Calendar/Calendar';
 export { default as Select } from './Select/Select';
-export { default as ExpansionPanels } from './ExpansionPanels/ExpansionPanels';
+export { default as ExpansionPanel } from './ExpansionPanel/ExpansionPanel';
+export {
+  default as ExpansionPanelHeader,
+} from './ExpansionPanel/ExpansionPanelHeader/ExpansionPanelHeader';
+export {
+  default as ExpansionPanelBody,
+} from './ExpansionPanel/ExpansionPanelBody/ExpansionPanelBody';
 export { Type } from './Button/Button';

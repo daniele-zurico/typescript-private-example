@@ -17,7 +17,7 @@ export const createExpensesStart = (
 });
 
 export const createExpensesSuccess = () => ({
-  type: actionTypes.LOAD_EXPENSES_START,
+  type: actionTypes.CREATE_EXPENSES_SUCCESS,
 });
 
 export const createExpensesFail = (error: IError) => ({

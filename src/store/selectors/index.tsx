@@ -34,3 +34,11 @@ export const getExpensesByCategory = createSelector(
     return value;
   }
 );
+
+export const getLoadingCategoriesAndExpenses = createSelector(
+  [getExpenses, getCategories],
+  (exp, cat) => {
+    const x = exp.loading && cat.loading;
+    return x;
+  }
+);

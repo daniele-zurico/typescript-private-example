@@ -11,13 +11,13 @@ interface IProps {
   expensesByCategory: any[];
 }
 
-const showExpenses = (props: IProps) => {
-  const dataChart: any[] = [['Task', 'Hours per Day']];
-  props.expensesByCategory.forEach((cat: any) => {
+const showExpenses = ({ expensesByCategory }: IProps) => {
+  const dataChart: any[] = [['Expenses', 'Amount per month']];
+  expensesByCategory.forEach((cat: any) => {
     dataChart.push([cat.category, cat.amount]);
   });
 
-  const expansionPanels = props.expensesByCategory.map((cat, key) => (
+  const expansionPanels = expensesByCategory.map((cat, key) => (
     <ExpansionPanel key={key}>
       <ExpansionPanelHeader>
         <div className={classes.Expense}>
@@ -38,20 +38,30 @@ const showExpenses = (props: IProps) => {
 
   return (
     <React.Fragment>
-      <Chart
-        width={'100%'}
-        height={'300px'}
-        chartType="PieChart"
-        loader={<div>Loading Chart</div>}
-        data={dataChart}
-        options={{
-          title: 'My Monthly expenses by category',
-          // Just add this option
-          pieHole: 0.4,
-          legend: 'bottom',
-        }}
-        rootProps={{ 'data-testid': '3' }}
-      />
+      <div className={classes.ChartContainer}>
+        <Chart
+          width={'100%'}
+          height={'300px'}
+          chartType="PieChart"
+          loader={<div>Loading Chart</div>}
+          data={dataChart}
+          options={{
+            title: 'My Monthly expenses by category',
+            // Just add this option
+            pieHole: 0.5,
+            legend: 'bottom',
+            colors: [
+              '#F44336',
+              '#00bcd4',
+              '#ff9800',
+              '#009688',
+              '#9c27b0',
+              '#607d8b',
+            ],
+          }}
+          rootProps={{ 'data-testid': '3' }}
+        />
+      </div>
       <div className={classes.Details}>Details</div>
       <div style={{ marginTop: '10px', width: '100%' }}>{expansionPanels}</div>
     </React.Fragment>

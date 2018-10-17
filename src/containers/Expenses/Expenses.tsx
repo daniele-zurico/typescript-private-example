@@ -7,7 +7,10 @@ import {
   loadCategoriesStart,
   loadExpensesStart,
 } from 'store/actions';
-import { getExpensesByCategory } from 'store/selectors';
+import {
+  getExpensesByCategory,
+  getLoadingCategoriesAndExpenses,
+} from 'store/selectors';
 import AddExpenses from './AddExpenses/AddExpenses';
 import ShowExpenses from './ShowExpenses/ShowExpenses';
 
@@ -18,6 +21,7 @@ interface IState {
 interface IProps {
   categories: any[];
   expensesByCategory: any[];
+  isLoading: boolean;
   userId: string;
   loadCategories: (id: string) => void;
   loadExpenses: (id: string) => void;
@@ -50,16 +54,25 @@ class Expenses extends Component<IProps, IState> {
   };
 
   public render() {
+    let displayContent = <Spinner />;
+    if (!this.props.isLoading) {
+      displayContent = (
+        <React.Fragment>
+          <AddExpenses
+            isModalOpen={this.state.isModalOpen}
+            onDismissModal={() => this.setState({ isModalOpen: false })}
+            categories={this.props.categories}
+            onAddExpenses={this.addExpensesHandler}
+          />
+          <ShowExpenses expensesByCategory={this.props.expensesByCategory} />
+        </React.Fragment>
+      );
+    }
+
     return (
       <React.Fragment>
-        <Spinner />
-        <AddExpenses
-          isModalOpen={this.state.isModalOpen}
-          onDismissModal={() => this.setState({ isModalOpen: false })}
-          categories={this.props.categories}
-          onAddExpenses={this.addExpensesHandler}
-        />
-        <ShowExpenses expensesByCategory={this.props.expensesByCategory} />
+        {displayContent}
+
         <Button
           label="+"
           type={Type.PRIMARY}
@@ -75,6 +88,7 @@ const mapStateToProps = (state: any) => ({
   categories: state.categories.categories,
   userId: state.auth.localId,
   expensesByCategory: getExpensesByCategory(state),
+  isLoading: getLoadingCategoriesAndExpenses(state),
 });
 
 const mapDispatchToProps = (dispatch: any) => ({

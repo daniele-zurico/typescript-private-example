@@ -43,11 +43,7 @@ export const getLoadingCategoriesAndExpenses = createSelector(
   }
 );
 
-export const getUserId = createSelector([getUser], user => {
-  if (user) {
-    debugger;
-    return user.localId;
-  } else {
-    return null;
-  }
-});
+export const getUserId = createSelector(
+  [getUser],
+  user => (user ? user.localId : null)
+);

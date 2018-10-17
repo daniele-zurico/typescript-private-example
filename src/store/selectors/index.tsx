@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 const getExpenses = (state: any) => state.expenses;
 const getCategories = (state: any) => state.categories;
-
+const getUser = (state: any) => state.auth;
 export const getTotalExpensesAmount = createSelector([getExpenses], expenses =>
   expenses.reduce((sum: number, expense: any) => {
     return sum + parseFloat(expense.amount);
@@ -42,3 +42,12 @@ export const getLoadingCategoriesAndExpenses = createSelector(
     return x;
   }
 );
+
+export const getUserId = createSelector([getUser], user => {
+  if (user) {
+    debugger;
+    return user.localId;
+  } else {
+    return null;
+  }
+});

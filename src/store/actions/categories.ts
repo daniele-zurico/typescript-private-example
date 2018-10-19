@@ -21,9 +21,8 @@ export const createCategoryFail = (error: IError) => ({
   error,
 });
 
-export const loadCategoriesStart = (id: string) => ({
+export const loadCategoriesStart = () => ({
   type: actionTypes.LOAD_CATEGORIES_START,
-  id,
 });
 
 export const loadCategoriesSuccess = (categories: any) => ({

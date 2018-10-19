@@ -39,31 +39,42 @@ const showExpenses = ({ expensesByCategory }: IProps) => {
   return (
     <React.Fragment>
       <div className={classes.ChartContainer}>
-        <Chart
-          width={'100%'}
-          height={'300px'}
-          chartType="PieChart"
-          loader={<div>Loading Chart</div>}
-          data={dataChart}
-          options={{
-            title: 'My Monthly expenses by category',
-            // Just add this option
-            pieHole: 0.5,
-            legend: 'bottom',
-            colors: [
-              '#F44336',
-              '#00bcd4',
-              '#ff9800',
-              '#009688',
-              '#9c27b0',
-              '#607d8b',
-            ],
-          }}
-          rootProps={{ 'data-testid': '3' }}
-        />
+        <div className={classes.Chart}>
+          <Chart
+            width={'100%'}
+            height={'100%'}
+            chartType="PieChart"
+            data={dataChart}
+            options={{
+              pieHole: 0.5,
+              legend: 'top',
+              colors: [
+                '#F44336',
+                '#00bcd4',
+                '#ff9800',
+                '#009688',
+                '#9c27b0',
+                '#607d8b',
+              ],
+            }}
+          />
+        </div>
+        <div className={classes.Chart}>
+          <Chart
+            width={'100%'}
+            height={'100%'}
+            chartType="BarChart"
+            data={dataChart}
+            options={{
+              chartArea: { width: '100%' },
+              legend: 'top',
+              colors: ['#E91E63'],
+            }}
+          />
+        </div>
       </div>
       <div className={classes.Details}>Details</div>
-      <div style={{ marginTop: '10px', width: '100%' }}>{expansionPanels}</div>
+      <div className={classes.ExpansionPanel}>{expansionPanels}</div>
     </React.Fragment>
   );
 };

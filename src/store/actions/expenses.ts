@@ -2,14 +2,12 @@ import { IError } from 'common/interfaces';
 import * as actionTypes from './actionTypes';
 
 export const createExpensesStart = (
-  id: string,
   name: string,
   amount: string,
   date: string,
   category: string
 ) => ({
   type: actionTypes.CREATE_EXPENSES_START,
-  id,
   name,
   amount,
   date,
@@ -17,7 +15,7 @@ export const createExpensesStart = (
 });
 
 export const createExpensesSuccess = () => ({
-  type: actionTypes.CREATE_EXPENSES_SUCCESS,
+  type: actionTypes.LOAD_EXPENSES_START,
 });
 
 export const createExpensesFail = (error: IError) => ({
@@ -25,9 +23,8 @@ export const createExpensesFail = (error: IError) => ({
   error,
 });
 
-export const loadExpensesStart = (id: string) => ({
+export const loadExpensesStart = () => ({
   type: actionTypes.LOAD_EXPENSES_START,
-  id,
 });
 
 export const loadExpensesSuccess = (expenses: any[]) => ({

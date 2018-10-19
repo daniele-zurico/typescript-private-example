@@ -36,8 +36,8 @@ const mapStateToProps = (state: any) => ({
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
-    loadIncome: (id: string) => dispatch(loadIncomeStart(id)),
-    addIncome: (id: string, amount: string, date: string) => dispatch(createIncomeStart(id, amount, date))
+    loadIncome: (id: string) => dispatch(loadIncomeStart()),
+    addIncome: (id: string, amount: string, date: string) => dispatch(createIncomeStart(amount, date))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Admin);

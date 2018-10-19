@@ -112,8 +112,8 @@ const mapStateToProps = (state: any) => ({
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
-  loadIncome: (id: string) => dispatch(loadIncomeStart(id)),
-  loadExpenses: (id: string) => dispatch(loadExpensesStart(id)),
+  loadIncome: (id: string) => dispatch(loadIncomeStart()),
+  loadExpenses: (id: string) => dispatch(loadExpensesStart()),
 });
 
 export default connect(

@@ -1,2 +1,2 @@
 export const Header: string;
-export const CaretDown: string;
+export const Angle: string;

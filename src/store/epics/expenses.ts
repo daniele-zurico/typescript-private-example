@@ -12,13 +12,14 @@ import {
 import { getUserId } from 'store/selectors';
 import * as actionTypes from '../actions/actionTypes';
 
-export const createExpensesEpic = (action$: any) =>
+export const createExpensesEpic = (action$: any, state$: any) =>
   action$.pipe(
     ofType(actionTypes.CREATE_EXPENSES_START),
-    mergeMap((action: any) =>
+    withLatestFrom(state$.pipe(map(getUserId))),
+    mergeMap(([action, userId]) =>
       ajax
         .post(
-          `${environment.firebase.databaseURL}/user/${action.id}/expenses.json`,
+          `${environment.firebase.databaseURL}/user/${userId}/expenses.json`,
           JSON.stringify({
             name: action.name,
             amount: action.amount,

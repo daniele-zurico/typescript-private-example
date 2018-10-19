@@ -158,7 +158,7 @@ const mapStateToProps = (state: any) => ({
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   createCategory: (id: string, category: string, tagId: number) =>
     dispatch(createCategoryStart(id, category, tagId)),
-  loadCategories: (id: string) => dispatch(loadCategoriesStart(id)),
+  loadCategories: (id: string) => dispatch(loadCategoriesStart()),
 });
 
 export default connect(

@@ -2,7 +2,8 @@ import { environment } from 'environments/environment.test';
 import { ofType } from 'redux-observable';
 import { of } from 'rxjs';
 import { ajax } from 'rxjs/ajax';
-import { catchError, map, mergeMap } from 'rxjs/operators';
+import { catchError, map, mergeMap, withLatestFrom } from 'rxjs/operators';
+import { getUserId } from 'store/selectors';
 import {
   createCategoryFail,
   createCategorySuccess,
@@ -10,15 +11,14 @@ import {
   loadCategoriesSuccess,
 } from '../actions';
 import * as actionTypes from '../actions/actionTypes';
-export const createCategoryEpic = (action$: any) =>
+export const createCategoryEpic = (action$: any, state$: any) =>
   action$.pipe(
     ofType(actionTypes.CREATE_CATEGORY_START),
-    mergeMap((action: any) =>
+    withLatestFrom(state$.pipe(map(getUserId))),
+    mergeMap(([action, userId]) =>
       ajax
         .post(
-          `${environment.firebase.databaseURL}/user/${
-          action.id
-          }/categories.json`,
+          `${environment.firebase.databaseURL}/user/${userId}/categories.json`,
           JSON.stringify({
             category: action.category,
             tag: action.tagId,
@@ -38,14 +38,15 @@ export const createCategoryEpic = (action$: any) =>
     )
   );
 
-export const loadCategoriesEpic = (action$: any) =>
+export const loadCategoriesEpic = (action$: any, state$: any) =>
   action$.pipe(
     ofType(actionTypes.LOAD_CATEGORIES_START),
-    mergeMap((action: any) =>
+    withLatestFrom(state$.pipe(map(getUserId))),
+    mergeMap(([, userId]) =>
       ajax
         .get(
           `${environment.firebase.databaseURL}/user/${
-          action.id
+          userId
           }/categories.json`
         )
         .pipe(

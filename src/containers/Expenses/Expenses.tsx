@@ -22,11 +22,9 @@ interface IProps {
   categories: any[];
   expensesByCategory: any[];
   isLoading: boolean;
-  userId: string;
-  loadCategories: (id: string) => void;
-  loadExpenses: (id: string) => void;
+  loadCategories: () => void;
+  loadExpenses: () => void;
   addExpenses: (
-    userId: string,
     name: string,
     amount: string,
     date: string,
@@ -39,8 +37,8 @@ class Expenses extends Component<IProps, IState> {
   };
 
   public componentDidMount() {
-    this.props.loadCategories(this.props.userId);
-    this.props.loadExpenses(this.props.userId);
+    this.props.loadCategories();
+    this.props.loadExpenses();
   }
 
   public addExpensesHandler = (
@@ -49,7 +47,7 @@ class Expenses extends Component<IProps, IState> {
     date: string,
     category: string
   ) => {
-    this.props.addExpenses(this.props.userId, name, amount, date, category);
+    this.props.addExpenses(name, amount, date, category);
     this.setState({ isModalOpen: false });
   };
 
@@ -86,21 +84,19 @@ class Expenses extends Component<IProps, IState> {
 
 const mapStateToProps = (state: any) => ({
   categories: state.categories.categories,
-  userId: state.auth.localId,
   expensesByCategory: getExpensesByCategory(state),
   isLoading: getLoadingCategoriesAndExpenses(state),
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
-  loadCategories: (id: string) => dispatch(loadCategoriesStart(id)),
-  loadExpenses: (id: string) => dispatch(loadExpensesStart(id)),
+  loadCategories: () => dispatch(loadCategoriesStart()),
+  loadExpenses: () => dispatch(loadExpensesStart()),
   addExpenses: (
-    userId: string,
     name: string,
     amount: string,
     date: string,
     category: string
-  ) => dispatch(createExpensesStart(userId, name, amount, date, category)),
+  ) => dispatch(createExpensesStart(name, amount, date, category)),
 });
 
 export default connect(

@@ -2,17 +2,17 @@ import { environment } from 'environments/environment.test';
 import { ofType } from 'redux-observable';
 import { of } from 'rxjs';
 import { ajax } from 'rxjs/ajax';
-import { catchError, map, mergeMap } from 'rxjs/operators';
+import { catchError, map, mergeMap, withLatestFrom } from 'rxjs/operators';
 import { createIncomeFailed, createIncomeSuccess, loadIncomeFailed, loadIncomeSuccess } from 'store/actions';
+import { getUserId } from 'store/selectors';
 import * as actionTypes from '../actions/actionTypes';
-export const addIncomeEpic = (action$: any) =>
+export const addIncomeEpic = (action$: any, state$: any) =>
     action$.pipe(
         ofType(actionTypes.CREATE_INCOME_START),
-        mergeMap((action: any) =>
+        withLatestFrom(state$.pipe(map(getUserId))),
+        mergeMap(([action, userId]) =>
             ajax.put(
-                `${environment.firebase.databaseURL}/user/${
-                action.id
-                }/income.json`,
+                `${environment.firebase.databaseURL}/user/${userId}/income.json`,
                 JSON.stringify({
                     amount: action.amount,
                     date: action.date
@@ -24,14 +24,13 @@ export const addIncomeEpic = (action$: any) =>
         )
     )
 
-export const loadIncomeEpic = (action$: any) =>
+export const loadIncomeEpic = (action$: any, state$: any) =>
     action$.pipe(
         ofType(actionTypes.LOAD_INCOME_START),
-        mergeMap((action: any) =>
+        withLatestFrom(state$.pipe(map(getUserId))),
+        mergeMap(([, userId]) =>
             ajax.get(
-                `${environment.firebase.databaseURL}/user/${
-                action.id
-                }/income.json`
+                `${environment.firebase.databaseURL}/user/${userId}/income.json`
             ).pipe(
                 map((res: any) => loadIncomeSuccess(res.response.amount, res.response.date)),
                 catchError((err: any) => {

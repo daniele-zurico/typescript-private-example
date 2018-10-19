@@ -29,6 +29,7 @@ class ExpansionPanel extends Component<{}, IState> {
         if (child.type.name === 'expansionPanelHeader') {
           return React.cloneElement(child, {
             onClick: this.toggleContent,
+            toggle: this.state.show
           });
         }
         return React.cloneElement(child);
@@ -38,7 +39,7 @@ class ExpansionPanel extends Component<{}, IState> {
       <div
         className={[
           classes.Container,
-          this.state.show ? classes.Open : null,
+          this.state.show ? classes.Open : classes.Close,
         ].join(' ')}
       >
         {childrenWithNewProps}

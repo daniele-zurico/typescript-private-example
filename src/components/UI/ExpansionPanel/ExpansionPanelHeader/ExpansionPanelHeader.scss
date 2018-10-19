@@ -5,9 +5,13 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  .CaretDown {
-    color: #a9a4a4;
+  font-size: 15px;
+  padding: 0 7px;
+
+  .Angle {
+    color: rgba(0, 0, 0, 0.54);
     font-size: 18px;
     cursor: pointer;
+    margin-left: 6px;
   }
 }

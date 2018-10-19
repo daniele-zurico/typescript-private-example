@@ -24,9 +24,6 @@ const addExpenses = (props: IProps) => {
         label: cat.category,
         value: cat.id
     }));
-
-    console.log(selectCategories);
-
     return (
         <Modal
             header="Add a new Expense"

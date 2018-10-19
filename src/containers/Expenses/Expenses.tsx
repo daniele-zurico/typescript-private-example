@@ -61,6 +61,7 @@ class Expenses extends Component<IProps, IState> {
   };
 
   public calculatePosition = (evt: any) => {
+    console.log(this.overlay);
     const pos = evt.currentTarget.getBoundingClientRect();
     const left = (pos.x + (pos.width / 2));
     const top = pos.top + pos.height;
@@ -104,8 +105,9 @@ class Expenses extends Component<IProps, IState> {
               display: 'flex',
               justifyContent: 'flex-end'
             }}>
-            <div ref={this.overlay}
-              style={{ width: '300px', height: '300px', backgroundColor: 'red' }}>ciao</div>
+            <div ref={this.overlay}>
+              <div style={{ width: '300px', height: '300px', backgroundColor: 'red' }}> Ciao</div>
+            </div>
           </div>
           <ShowExpenses expensesByCategory={this.props.expensesByCategory} />
         </React.Fragment>

@@ -10,7 +10,7 @@ interface IProp {
   floating?: boolean;
   darkMode?: boolean;
   outlined?: boolean;
-  clicked?: () => void;
+  clicked?: (evt: any) => void;
 }
 
 export enum Type {

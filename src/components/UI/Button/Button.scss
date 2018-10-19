@@ -56,6 +56,7 @@
     color: white;
     background-color: transparent !important;
     cursor: initial;
+
     &.Dark {
       background-color: #b3afaf !important;
     }
@@ -124,5 +125,25 @@
 
   &.warn {
     background-color: $warn-color;
+  }
+
+  &.outlines {
+    background-color: transparent;
+    border: 1px solid;
+
+    &.primary {
+      border-color: $primary-color;
+      color: $primary-color;
+    }
+
+    &.accent {
+      border-color: $accent-color;
+      color: $accent-color;
+    }
+
+    &.warn {
+      border-color: $warn-color;
+      color: $warn-color;
+    }
   }
 }

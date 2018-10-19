@@ -12,6 +12,7 @@ import {
   getLoadingCategoriesAndExpenses,
 } from 'store/selectors';
 import AddExpenses from './AddExpenses/AddExpenses';
+import * as classes from './Expenses.scss';
 import ShowExpenses from './ShowExpenses/ShowExpenses';
 
 interface IState {
@@ -69,6 +70,15 @@ class Expenses extends Component<IProps, IState> {
 
     return (
       <React.Fragment>
+        <div className={classes.CalendarContainer}>
+          <Button
+            outlined={true}
+            label="27 Oct - 27 Nov"
+            darkMode={true}
+            type={Type.ACCENT}
+            disabled={false}
+            class={classes.CalendarBtn} />
+        </div>
         {displayContent}
 
         <Button

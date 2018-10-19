@@ -9,6 +9,7 @@ interface IProp {
   isSubmit?: boolean;
   floating?: boolean;
   darkMode?: boolean;
+  outlined?: boolean;
   clicked?: () => void;
 }
 
@@ -26,6 +27,9 @@ const button = (props: IProp) => {
   ];
   if (props.floating) {
     buttonClass.push(classes.Floating);
+  }
+  if (props.outlined) {
+    buttonClass.push(classes.outlines);
   }
   switch (props.type) {
     case Type.PRIMARY:

@@ -17,10 +17,13 @@ const clickableOverlayContent = (props: IProps) => {
         left: props.overlayLeftPos,
         zIndex: 99999,
         border: '1px solid red',
+        display: 'flex',
+        visibility: !props.show ? 'hidden' : 'visible',
         justifyContent: 'flex-end',
       }}
+      ref={props.reference}
     >
-      <div ref={props.reference}>{props.children}</div>
+      {props.children}
     </div>
   );
 };

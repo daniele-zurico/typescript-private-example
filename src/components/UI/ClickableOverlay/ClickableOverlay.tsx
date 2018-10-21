@@ -59,6 +59,7 @@ class ClickableOverlay extends Component<{}, IState> {
             overlayTopPos: this.state.overlayTopPos,
             overlayLeftPos: this.state.overlayLeftPos,
             reference: this.overlayRef,
+            show: this.state.show,
           });
           // } else {
           //  return null;

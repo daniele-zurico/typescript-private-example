@@ -1,7 +1,12 @@
 import {
+  Button,
+  ClickableOverlay,
+  ClickableOverlayContent,
+  ClickableOverlayElement,
   ExpansionPanel,
   ExpansionPanelBody,
   ExpansionPanelHeader,
+  Type,
 } from 'components';
 import * as React from 'react';
 import { Chart } from 'react-google-charts';
@@ -38,6 +43,21 @@ const showExpenses = ({ expensesByCategory }: IProps) => {
 
   return (
     <React.Fragment>
+      <ClickableOverlay>
+        <ClickableOverlayElement>
+          <Button
+            outlined={true}
+            label="27 Oct - 27 Nov"
+            darkMode={true}
+            type={Type.ACCENT}
+            disabled={false}
+            class={classes.CalendarBtn}
+          />
+        </ClickableOverlayElement>
+        <ClickableOverlayContent>
+          <div className={classes.Test}>test</div>
+        </ClickableOverlayContent>
+      </ClickableOverlay>
       <div className={classes.ChartContainer}>
         <div className={classes.Chart}>
           <Chart

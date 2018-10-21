@@ -1,11 +1,4 @@
-import {
-  Button,
-  ClickableOverlay,
-  ClickableOverlayContent,
-  ClickableOverlayElement,
-  Spinner,
-  Type,
-} from 'components';
+import { Button, Spinner, Type } from 'components';
 import * as React from 'react';
 import { Component } from 'react';
 import { connect } from 'react-redux';
@@ -19,7 +12,6 @@ import {
   getLoadingCategoriesAndExpenses,
 } from 'store/selectors';
 import AddExpenses from './AddExpenses/AddExpenses';
-import * as classes from './Expenses.scss';
 import ShowExpenses from './ShowExpenses/ShowExpenses';
 interface IState {
   isModalOpen: boolean;
@@ -72,21 +64,6 @@ class Expenses extends Component<IProps, IState> {
             onAddExpenses={this.addExpensesHandler}
           />
 
-          <ClickableOverlay>
-            <ClickableOverlayElement>
-              <Button
-                outlined={true}
-                label="27 Oct - 27 Nov"
-                darkMode={true}
-                type={Type.ACCENT}
-                disabled={false}
-                class={classes.CalendarBtn}
-              />
-            </ClickableOverlayElement>
-            <ClickableOverlayContent>
-              <div className={classes.Test}>test</div>
-            </ClickableOverlayContent>
-          </ClickableOverlay>
           <ShowExpenses expensesByCategory={this.props.expensesByCategory} />
           <Button
             label="+"

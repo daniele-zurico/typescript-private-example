@@ -5,10 +5,12 @@ interface IProps {
   children: any;
 }
 
-const clickableOverlayElement = ({ onClick, children }: IProps) => (
-  <div className={classes.Container}>
-    <div onClick={onClick}>{children}</div>
-  </div>
-);
+const clickableOverlayElement = ({ onClick, children }: IProps) => {
+  return (
+    <div className={classes.Container}>
+      <div onClick={onClick}>{children}</div>
+    </div>
+  );
+};
 
 export default clickableOverlayElement;

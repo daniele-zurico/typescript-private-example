@@ -1,4 +1,11 @@
-import { Button, Spinner, Type } from 'components';
+import {
+  Button,
+  ClickableOverlay,
+  ClickableOverlayContent,
+  ClickableOverlayElement,
+  Spinner,
+  Type,
+} from 'components';
 import * as React from 'react';
 import { Component } from 'react';
 import { connect } from 'react-redux';
@@ -14,13 +21,9 @@ import {
 import AddExpenses from './AddExpenses/AddExpenses';
 import * as classes from './Expenses.scss';
 import ShowExpenses from './ShowExpenses/ShowExpenses';
-declare var window: any;
 interface IState {
   isModalOpen: boolean;
-  overlayTopPos: number;
-  overlayLeftPos: number;
 }
-
 
 interface IProps {
   categories: any[];
@@ -34,7 +37,6 @@ interface IProps {
     date: string,
     category: string
   ) => void;
-
 }
 class Expenses extends Component<IProps, IState> {
   public state = {
@@ -42,8 +44,6 @@ class Expenses extends Component<IProps, IState> {
     overlayTopPos: 0,
     overlayLeftPos: 0,
   };
-
-  public overlay: any = React.createRef();
 
   public componentDidMount() {
     this.props.loadCategories();
@@ -60,22 +60,6 @@ class Expenses extends Component<IProps, IState> {
     this.setState({ isModalOpen: false });
   };
 
-  public calculatePosition = (evt: any) => {
-    console.log(this.overlay);
-    const pos = evt.currentTarget.getBoundingClientRect();
-    const left = (pos.x + (pos.width / 2));
-    const top = pos.top + pos.height;
-    let overlayLeftPos = left;
-    if (left + this.overlay.current.clientWidth > window.innerWidth) {
-      overlayLeftPos = left - this.overlay.current.clientWidth;
-    }
-    let overlayTopPos = top;
-    if (top >= window.innerHeight) {
-      overlayTopPos = top - this.overlay.current.clientHeight;
-    }
-    this.setState({ overlayTopPos, overlayLeftPos });
-  }
-
   public render() {
     let displayContent = <Spinner />;
     if (!this.props.isLoading) {
@@ -87,58 +71,34 @@ class Expenses extends Component<IProps, IState> {
             categories={this.props.categories}
             onAddExpenses={this.addExpensesHandler}
           />
-          <Button
-            outlined={true}
-            label="27 Oct - 27 Nov"
-            darkMode={true}
-            type={Type.ACCENT}
-            disabled={false}
-            class={classes.CalendarBtn}
-            clicked={this.calculatePosition} />
-          <div
-            style={{
-              position: "fixed",
-              top: this.state.overlayTopPos,
-              left: this.state.overlayLeftPos,
-              zIndex: 99999,
-              border: '1px solid red',
-              display: 'flex',
-              justifyContent: 'flex-end'
-            }}>
-            <div ref={this.overlay}>
-              <div style={{ width: '300px', height: '300px', backgroundColor: 'red' }}> Ciao</div>
-            </div>
-          </div>
+
+          <ClickableOverlay>
+            <ClickableOverlayElement>
+              <Button
+                outlined={true}
+                label="27 Oct - 27 Nov"
+                darkMode={true}
+                type={Type.ACCENT}
+                disabled={false}
+                class={classes.CalendarBtn}
+              />
+            </ClickableOverlayElement>
+            <ClickableOverlayContent>
+              <div className={classes.Test}>test</div>
+            </ClickableOverlayContent>
+          </ClickableOverlay>
           <ShowExpenses expensesByCategory={this.props.expensesByCategory} />
+          <Button
+            label="+"
+            type={Type.PRIMARY}
+            floating={true}
+            clicked={() => this.setState({ isModalOpen: true })}
+          />
         </React.Fragment>
       );
     }
 
-
-
-    return (
-      <React.Fragment>
-        <div className={classes.CalendarContainer}>
-          <Button
-            outlined={true}
-            label="27 Oct - 27 Nov"
-            darkMode={true}
-            type={Type.ACCENT}
-            disabled={false}
-            class={classes.CalendarBtn}
-            clicked={this.calculatePosition} />
-
-        </div>
-        {displayContent}
-
-        <Button
-          label="+"
-          type={Type.PRIMARY}
-          floating={true}
-          clicked={() => this.setState({ isModalOpen: true })}
-        />
-      </React.Fragment>
-    );
+    return <React.Fragment>{displayContent}</React.Fragment>;
   }
 }
 
@@ -151,12 +111,8 @@ const mapStateToProps = (state: any) => ({
 const mapDispatchToProps = (dispatch: any) => ({
   loadCategories: () => dispatch(loadCategoriesStart()),
   loadExpenses: () => dispatch(loadExpensesStart()),
-  addExpenses: (
-    name: string,
-    amount: string,
-    date: string,
-    category: string
-  ) => dispatch(createExpensesStart(name, amount, date, category)),
+  addExpenses: (name: string, amount: string, date: string, category: string) =>
+    dispatch(createExpensesStart(name, amount, date, category)),
 });
 
 export default connect(

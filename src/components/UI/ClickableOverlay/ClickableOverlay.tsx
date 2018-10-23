@@ -26,8 +26,9 @@ class ClickableOverlay extends Component<{}, IState> {
       height,
     } = evt.currentTarget.children[0].getBoundingClientRect();
     const { clientHeight, clientWidth } = this.overlayRef.current;
-    let overlayLeftPos = x + width / 2;
-    let overlayTopPos = y + height;
+    const marginTop = 6;
+    let overlayLeftPos = x + width;
+    let overlayTopPos = y + height + marginTop;
     if (overlayLeftPos + clientWidth > innerWidth) {
       overlayLeftPos -= clientWidth;
     }
@@ -54,16 +55,12 @@ class ClickableOverlay extends Component<{}, IState> {
       (child: any, i) => {
         // if not visible hide the content otherwise clone the element and pass the state
         if (child.type.name === 'clickableOverlayContent') {
-          // if (this.state.show) {
           return React.cloneElement(child, {
             overlayTopPos: this.state.overlayTopPos,
             overlayLeftPos: this.state.overlayLeftPos,
             reference: this.overlayRef,
             show: this.state.show,
           });
-          // } else {
-          //  return null;
-          // }
         }
         // register the click to toggle the content
         if (child.type.name === 'clickableOverlayElement') {

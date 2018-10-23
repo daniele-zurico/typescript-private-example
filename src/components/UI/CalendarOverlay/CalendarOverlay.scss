@@ -1,0 +1,52 @@
+.Content {
+  display: flex;
+  width: 320px;
+  height: 250px;
+  background-color: white;
+  flex-direction: column;
+  font-size: 14px;
+  .Header {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    height: 50px;
+    padding: 10px 0;
+  }
+  .Body {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    .WeekDaysContainer {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      padding: 2px 20px 0 20px;
+      .Day {
+        width: 39px;
+        height: 36px;
+        &.header {
+          border: 0px;
+          height: 10px;
+        }
+        .cell {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          align-content: center;
+          height: 100%;
+          cursor: pointer;
+          &.selected {
+            background-color: #307a8d;
+            color: white;
+          }
+
+          &.header {
+            align-items: flex-end;
+            border-bottom: 1px solid #efefef;
+            font-weight: 500;
+          }
+        }
+      }
+    }
+  }
+}

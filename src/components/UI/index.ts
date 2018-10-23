@@ -27,3 +27,5 @@ export {
 export {
   default as ClickableOverlayElement,
 } from './ClickableOverlay/ClickableOverlayElement/ClickableOverlayElement';
+
+export { default as CalendarOverlay } from './CalendarOverlay/CalendarOverlay';

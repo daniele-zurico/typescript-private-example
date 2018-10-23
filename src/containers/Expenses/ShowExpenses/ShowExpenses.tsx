@@ -1,5 +1,6 @@
 import {
   Button,
+  CalendarOverlay,
   ClickableOverlay,
   ClickableOverlayContent,
   ClickableOverlayElement,
@@ -55,7 +56,36 @@ const showExpenses = ({ expensesByCategory }: IProps) => {
           />
         </ClickableOverlayElement>
         <ClickableOverlayContent>
-          <div className={classes.Test}>test</div>
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              backgroundColor: 'white',
+              boxShadow: '2px 2px 6px 0px rgba(0, 0, 0, 0.52)',
+            }}
+          >
+            <div style={{ display: 'flex', marginTop: '15px' }}>
+              <CalendarOverlay />
+              <CalendarOverlay />
+            </div>
+
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                marginTop: '15px',
+              }}
+            >
+              <Button
+                outlined={true}
+                label="Confirm"
+                darkMode={true}
+                type={Type.ACCENT}
+                disabled={false}
+                class={classes.CalendarBtn}
+              />
+            </div>
+          </div>
         </ClickableOverlayContent>
       </ClickableOverlay>
       <div className={classes.ChartContainer}>

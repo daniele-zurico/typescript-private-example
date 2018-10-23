@@ -17,10 +17,13 @@ interface IProps {
 }
 
 class CalendarOverlay extends Component<IProps, IState> {
+  public static defaultProps: Partial<IProps> = {
+    initialDate: new Date().getTime(),
+  };
   public state = {
-    selectedDay: this.props.initialDate ? new Date(this.props.initialDate).getDate() : new Date().getDate(),
-    selectedMonth: this.props.initialDate ? new Date(this.props.initialDate).getMonth() : new Date().getMonth(),
-    selectedYear: this.props.initialDate ? new Date(this.props.initialDate).getFullYear() : new Date().getFullYear(),
+    selectedDay: new Date(this.props.initialDate as number).getDate(),
+    selectedMonth: new Date(this.props.initialDate as number).getMonth(),
+    selectedYear: new Date(this.props.initialDate as number).getFullYear(),
   };
   public handleIncrementMonth = () => {
     this.setState((prevState: any) => ({

@@ -75,12 +75,14 @@ const showExpenses = ({ expensesByCategory }: IProps) => {
           >
             <div style={{ display: 'flex', marginTop: '15px' }}>
               <CalendarOverlay
+                key={'calendar_from'}
                 selectedDate={fromDateHandler}
-                initialDate={new Date().getTime()}
+                initialDate={addMonthsToCurrentDate(3).getTime()}
               />
               <CalendarOverlay
+                key={'calendar_to'}
                 selectedDate={toDateHandler}
-                initialDate={addMonthsToCurrentDate(1).getTime()}
+                initialDate={addMonthsToCurrentDate(4).getTime()}
               />
             </div>
 

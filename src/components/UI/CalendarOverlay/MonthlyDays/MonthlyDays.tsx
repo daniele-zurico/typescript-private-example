@@ -25,13 +25,15 @@ const monthlyDays = (props: IProps) => {
 
   for (let i = 1; i < dayOfTheWeek; i++) {
     const dayNumber = numberOfDaysPrevMonth - dayOfTheWeek + i + 1;
-    days.push(<Day key={i} disable={true} day={dayNumber} />);
+    days.push(
+      <Day key={`${dayNumber}_${props.month}`} disable={true} day={dayNumber} />
+    );
   }
 
   for (let i = 1; i <= numberOfDaysCurrMonth; i++) {
     days.push(
       <Day
-        key={i}
+        key={`${i}_${props.month + 1}`}
         onSelectDay={() => props.onSelectedDay(i)}
         selected={props.selectedDay === i}
         day={i}

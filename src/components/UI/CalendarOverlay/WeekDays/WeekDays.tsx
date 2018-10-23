@@ -5,8 +5,8 @@ const weekDays = () => {
   const days = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'];
   return (
     <React.Fragment>
-      {days.map((day: string, i: number) => (
-        <Day key={i} day={day} />
+      {days.map((day: string) => (
+        <Day key={day} day={day} />
       ))}
     </React.Fragment>
   );

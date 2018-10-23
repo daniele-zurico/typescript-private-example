@@ -1,0 +1,26 @@
+@import '~styles/app';
+.Day {
+  width: 39px;
+  height: 36px;
+
+  &.header {
+    border: 0px;
+    height: 10px;
+  }
+  .cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    height: 100%;
+    cursor: pointer;
+    color: #525151;
+    &.disable {
+      color: #9ea7b3;
+    }
+    &.selected {
+      background-color: $warn-color;
+      color: white;
+    }
+  }
+}

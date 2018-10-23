@@ -12,6 +12,7 @@ import {
   getLoadingCategoriesAndExpenses,
 } from 'store/selectors';
 import AddExpenses from './AddExpenses/AddExpenses';
+import * as classes from './Expenses.scss';
 import ShowExpenses from './ShowExpenses/ShowExpenses';
 interface IState {
   isModalOpen: boolean;
@@ -65,12 +66,13 @@ class Expenses extends Component<IProps, IState> {
           />
 
           <ShowExpenses expensesByCategory={this.props.expensesByCategory} />
-          <Button
-            label="+"
-            type={Type.PRIMARY}
-            floating={true}
-            clicked={() => this.setState({ isModalOpen: true })}
-          />
+          <div className={classes.AddExpenseContainer}>
+            <Button
+              label="Add New Expense"
+              type={Type.PRIMARY}
+              clicked={() => this.setState({ isModalOpen: true })}
+            />
+          </div>
         </React.Fragment>
       );
     }

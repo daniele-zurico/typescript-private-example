@@ -1,2 +1,1 @@
-export const CalendarBtn: string;
-export const Test: string;
+export const AddExpenseContainer: string;

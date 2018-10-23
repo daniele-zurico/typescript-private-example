@@ -1,9 +1,51 @@
 .Container {
-    display: flex;
-    flex-flow: column;
-    align-content: center;
-    align-items: center;
-    background-color: rgb(238, 238, 238);
-    min-height: calc(100vh - 48px);
-    padding: 15px;
+  width: 100%;
+  position: relative;
+  min-height: 0 !important;
+  z-index: 1;
+  height: calc(100vh - 75px);
+}
+
+.Navbar {
+  margin-bottom: 0 !important;
+  margin-top: 10px !important;
+  min-height: 65px !important;
+  position: relative !important;
+  z-index: 1000;
+  border-width: 0 0 1px;
+  margin-left: 185px;
+}
+
+.PaperWrap {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  padding: 20px;
+  min-height: 100%;
+  margin-left: 185px;
+  background-image: -webkit-linear-gradient(
+      45deg,
+      rgb(245, 245, 245) 30px,
+      rgb(245, 245, 245) 30px
+    ),
+    -webkit-linear-gradient(135deg, transparent 30px, rgb(245, 245, 245) 30px),
+    -webkit-linear-gradient(225deg, rgb(245, 245, 245) 30px, rgb(245, 245, 245)
+          30px),
+    -webkit-linear-gradient(315deg, transparent 30px, rgb(245, 245, 245) 30px);
+  background-size: 52% 52%;
+  background-position: left bottom, right bottom, right top, left top;
+  background-repeat: no-repeat;
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-width: 0 42px 42px 0;
+    border-style: solid;
+    border-color: #ffffff rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0.4), 0 0 10px rgba(0, 0, 0, 0.3);
+    transform: rotate(-90deg);
+  }
 }

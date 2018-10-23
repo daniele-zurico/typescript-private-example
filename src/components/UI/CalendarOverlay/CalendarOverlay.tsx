@@ -1,60 +1,70 @@
 import * as React from 'react';
 import { Component } from 'react';
 import * as classes from './CalendarOverlay.scss';
+import MonthlyDays from './MonthlyDays/MonthlyDays';
+import MonthSelector from './MonthSelector/MonthSelector';
+import WeekDays from './WeekDays/WeekDays';
 
 interface IState {
   selectedDay: number;
+  selectedMonth: number;
+  selectedYear: number;
 }
 
 class CalendarOverlay extends Component<{}, IState> {
   public state = {
     selectedDay: new Date().getDate(),
+    selectedMonth: new Date().getMonth(),
+    selectedYear: new Date().getFullYear(),
   };
-  public render() {
-    const weekDays = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'];
-    const weekDaysCell = weekDays.map((day: string, i: number) => (
-      <div key={i} className={[classes.Day, classes.header].join(' ')}>
-        <div className={[classes.cell, classes.header].join(' ')}>{day}</div>
-      </div>
-    ));
 
-    const daysCell = [];
-    const numberOfDays = new Date(
-      new Date().getFullYear(),
-      new Date().getMonth() + 1,
-      0
-    ).getDate();
-    for (let i = 1; i <= numberOfDays; i++) {
-      daysCell.push(
-        <div key={i} className={classes.Day}>
-          <div
-            className={[
-              classes.cell,
-              this.state.selectedDay === i ? classes.selected : null,
-            ].join(' ')}
-            onClick={() => this.setState({ selectedDay: i })}
-          >
-            {i}
-          </div>
-        </div>
-      );
-    }
+  public handleIncrementMonth = () => {
+    this.setState((prevState: any) => ({
+      selectedMonth:
+        prevState.selectedMonth === 11 ? 0 : prevState.selectedMonth + 1,
+      selectedYear:
+        prevState.selectedMonth === 11
+          ? prevState.selectedYear + 1
+          : prevState.selectedYear,
+    }));
+  };
+
+  public handleDecrementMonth = () => {
+    this.setState((prevState: any) => ({
+      selectedMonth:
+        prevState.selectedMonth === 0 ? 11 : prevState.selectedMonth - 1,
+      selectedYear:
+        prevState.selectedMonth === 0
+          ? prevState.selectedYear - 1
+          : prevState.selectedYear,
+    }));
+  };
+
+  public selectedDayHandler = (day: number) => {
+    this.setState({ selectedDay: day });
+  };
+
+  public render() {
     return (
       <div className={classes.Content}>
-        <div className={classes.Header}>
-          <div>
-            <i className={['fa', 'fa-arrow-left'].join(' ')} />
-          </div>
-          <div>
-            <b>October 2018</b>
-          </div>
-          <div>
-            <i className={['fa', 'fa-arrow-right'].join(' ')} />
-          </div>
-        </div>
+        <MonthSelector
+          handleDecrementMonth={this.handleDecrementMonth}
+          handleIncrementMonth={this.handleIncrementMonth}
+          selectedMonth={this.state.selectedMonth}
+          selectedYear={this.state.selectedYear}
+        />
         <div className={classes.Body}>
-          <div className={classes.WeekDaysContainer}>{weekDaysCell}</div>
-          <div className={classes.WeekDaysContainer}>{daysCell}</div>
+          <div className={classes.WeekDaysContainer}>
+            <WeekDays />
+          </div>
+          <div className={classes.WeekDaysContainer}>
+            <MonthlyDays
+              month={this.state.selectedMonth}
+              year={this.state.selectedYear}
+              onSelectedDay={this.selectedDayHandler}
+              selectedDay={this.state.selectedDay}
+            />
+          </div>
         </div>
       </div>
     );

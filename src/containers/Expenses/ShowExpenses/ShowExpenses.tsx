@@ -50,7 +50,7 @@ const showExpenses = ({ expensesByCategory }: IProps) => {
             outlined={true}
             label="27 Oct - 27 Nov"
             darkMode={true}
-            type={Type.ACCENT}
+            type={Type.PRIMARY}
             disabled={false}
             class={classes.CalendarBtn}
           />
@@ -77,10 +77,9 @@ const showExpenses = ({ expensesByCategory }: IProps) => {
               }}
             >
               <Button
-                outlined={true}
                 label="Confirm"
                 darkMode={true}
-                type={Type.ACCENT}
+                type={Type.PRIMARY}
                 disabled={false}
                 class={classes.CalendarBtn}
               />
@@ -99,10 +98,10 @@ const showExpenses = ({ expensesByCategory }: IProps) => {
               pieHole: 0.5,
               legend: 'top',
               colors: [
-                '#F44336',
-                '#00bcd4',
-                '#ff9800',
-                '#009688',
+                '#ff6b6b',
+                '#ffa200',
+                '#45b6b0',
+                '#65c3df',
                 '#9c27b0',
                 '#607d8b',
               ],
@@ -118,12 +117,12 @@ const showExpenses = ({ expensesByCategory }: IProps) => {
             options={{
               chartArea: { width: '100%' },
               legend: 'top',
-              colors: ['#E91E63'],
+              colors: ['#ff6b6b'],
             }}
           />
         </div>
       </div>
-      <div className={classes.Details}>Details</div>
+      <h3>Details</h3>
       <div className={classes.ExpansionPanel}>{expansionPanels}</div>
     </React.Fragment>
   );

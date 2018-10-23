@@ -11,13 +11,17 @@ interface IState {
   selectedYear: number;
 }
 
-class CalendarOverlay extends Component<{}, IState> {
-  public state = {
-    selectedDay: new Date().getDate(),
-    selectedMonth: new Date().getMonth(),
-    selectedYear: new Date().getFullYear(),
-  };
+interface IProps {
+  initialDate?: number;
+  selectedDate: (date: number) => void;
+}
 
+class CalendarOverlay extends Component<IProps, IState> {
+  public state = {
+    selectedDay: this.props.initialDate ? new Date(this.props.initialDate).getDate() : new Date().getDate(),
+    selectedMonth: this.props.initialDate ? new Date(this.props.initialDate).getMonth() : new Date().getMonth(),
+    selectedYear: this.props.initialDate ? new Date(this.props.initialDate).getFullYear() : new Date().getFullYear(),
+  };
   public handleIncrementMonth = () => {
     this.setState((prevState: any) => ({
       selectedMonth:
@@ -41,7 +45,13 @@ class CalendarOverlay extends Component<{}, IState> {
   };
 
   public selectedDayHandler = (day: number) => {
+    const selectedDate = new Date(
+      this.state.selectedYear,
+      this.state.selectedMonth,
+      day
+    );
     this.setState({ selectedDay: day });
+    this.props.selectedDate(selectedDate.getTime());
   };
 
   public render() {

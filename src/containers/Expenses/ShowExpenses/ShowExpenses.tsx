@@ -1,3 +1,4 @@
+import { addMonthsToCurrentDate } from 'common/util/util';
 import {
   Button,
   CalendarOverlay,
@@ -42,6 +43,14 @@ const showExpenses = ({ expensesByCategory }: IProps) => {
     </ExpansionPanel>
   ));
 
+  const fromDateHandler = (date: number) => {
+    console.log(new Date(date));
+  };
+
+  const toDateHandler = (date: number) => {
+    console.log(new Date(date));
+  };
+
   return (
     <React.Fragment>
       <ClickableOverlay>
@@ -65,8 +74,14 @@ const showExpenses = ({ expensesByCategory }: IProps) => {
             }}
           >
             <div style={{ display: 'flex', marginTop: '15px' }}>
-              <CalendarOverlay />
-              <CalendarOverlay />
+              <CalendarOverlay
+                selectedDate={fromDateHandler}
+                initialDate={new Date().getTime()}
+              />
+              <CalendarOverlay
+                selectedDate={toDateHandler}
+                initialDate={addMonthsToCurrentDate(1).getTime()}
+              />
             </div>
 
             <div

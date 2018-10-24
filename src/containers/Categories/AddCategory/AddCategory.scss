@@ -1,13 +1,16 @@
 @import '~styles/app';
 .Modal {
-  height: 260px;
+  height: 275px;
   .Form {
-    position: absolute;
-    top: 10px;
-    left: 0;
+    width: 100%;
+    padding: 0 23px;
+    display: flex;
+    flex-flow: column;
+    top: 39px;
     .ButtonContainer {
       display: flex;
       margin-top: 20px;
+      margin-bottom: 20px;
     }
     .Error {
       color: $warn-color;

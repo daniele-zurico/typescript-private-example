@@ -1,7 +1,7 @@
 import { addMonthsToCurrentDate } from 'common/util/util';
 import {
   Button,
-  CalendarOverlay,
+  Calendar,
   ClickableOverlay,
   ClickableOverlayContent,
   ClickableOverlayElement,
@@ -74,12 +74,12 @@ const showExpenses = ({ expensesByCategory }: IProps) => {
             }}
           >
             <div style={{ display: 'flex', marginTop: '15px' }}>
-              <CalendarOverlay
+              <Calendar
                 key={'calendar_from'}
                 selectedDate={fromDateHandler}
                 initialDate={addMonthsToCurrentDate(3).getTime()}
               />
-              <CalendarOverlay
+              <Calendar
                 key={'calendar_to'}
                 selectedDate={toDateHandler}
                 initialDate={addMonthsToCurrentDate(4).getTime()}
@@ -104,6 +104,7 @@ const showExpenses = ({ expensesByCategory }: IProps) => {
           </div>
         </ClickableOverlayContent>
       </ClickableOverlay>
+
       <div className={classes.ChartContainer}>
         <div className={classes.Chart}>
           <Chart

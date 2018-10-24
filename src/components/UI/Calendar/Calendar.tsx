@@ -1,88 +1,83 @@
 import * as React from 'react';
 import { Component } from 'react';
 import * as classes from './Calendar.scss';
+import MonthlyDays from './MonthlyDays/MonthlyDays';
+import MonthSelector from './MonthSelector/MonthSelector';
+import WeekDays from './WeekDays/WeekDays';
 
 interface IState {
+  selectedDay: number;
   selectedMonth: number;
+  selectedYear: number;
 }
+
 interface IProps {
-  onSelectDay: (timestamp: number) => any;
+  initialDate?: number;
+  selectedDate: (date: number) => void;
 }
 
 class Calendar extends Component<IProps, IState> {
+  public static defaultProps: Partial<IProps> = {
+    initialDate: new Date().getTime(),
+  };
   public state = {
-    selectedMonth: -1,
+    selectedDay: new Date(this.props.initialDate as number).getDate(),
+    selectedMonth: new Date(this.props.initialDate as number).getMonth(),
+    selectedYear: new Date(this.props.initialDate as number).getFullYear(),
+  };
+  public handleIncrementMonth = () => {
+    this.setState((prevState: any) => ({
+      selectedMonth:
+        prevState.selectedMonth === 11 ? 0 : prevState.selectedMonth + 1,
+      selectedYear:
+        prevState.selectedMonth === 11
+          ? prevState.selectedYear + 1
+          : prevState.selectedYear,
+    }));
   };
 
-  public months = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
-  ];
-
-  public handleMonthChange = (evt: React.FormEvent<HTMLSelectElement>) => {
-    this.setState({
-      selectedMonth: this.months.indexOf(evt.currentTarget.value),
-    });
+  public handleDecrementMonth = () => {
+    this.setState((prevState: any) => ({
+      selectedMonth:
+        prevState.selectedMonth === 0 ? 11 : prevState.selectedMonth - 1,
+      selectedYear:
+        prevState.selectedMonth === 0
+          ? prevState.selectedYear - 1
+          : prevState.selectedYear,
+    }));
   };
 
-  public handleDayChange = (evt: React.FormEvent<HTMLSelectElement>) => {
-    const timestamp: number = new Date(
-      new Date().getFullYear(),
+  public selectedDayHandler = (day: number) => {
+    const selectedDate = new Date(
+      this.state.selectedYear,
       this.state.selectedMonth,
-      parseInt(evt.currentTarget.value, 10) + 1
-    ).getTime();
-    this.props.onSelectDay(timestamp);
+      day
+    );
+    this.setState({ selectedDay: day });
+    this.props.selectedDate(selectedDate.getTime());
   };
 
   public render() {
-    const months = this.months.map((day: any) => (
-      <option key={day} value={day}>
-        {day}
-      </option>
-    ));
-    const days = [];
-    if (this.state.selectedMonth !== -1) {
-      const numberOfDays = new Date(
-        new Date().getFullYear(),
-        this.state.selectedMonth + 1,
-        0
-      ).getDate();
-
-      for (let i = 0; i < numberOfDays; i++) {
-        days.push(
-          <option key={i} value={i}>
-            {i + 1}
-          </option>
-        );
-      }
-    }
-
     return (
-      <div className={classes.CalendarContainer}>
-        <div className={classes.MonthsContainer}>
-          <span>Month</span>
-          <select onChange={this.handleMonthChange}>
-            <option>Select</option>
-            {months}
-          </select>
-        </div>
-
-        <div className={classes.DaysContainer}>
-          <span>Day</span>
-          <select onChange={this.handleDayChange}>
-            <option>Select</option>
-            {days}
-          </select>
+      <div className={classes.Content}>
+        <MonthSelector
+          handleDecrementMonth={this.handleDecrementMonth}
+          handleIncrementMonth={this.handleIncrementMonth}
+          selectedMonth={this.state.selectedMonth}
+          selectedYear={this.state.selectedYear}
+        />
+        <div className={classes.Body}>
+          <div className={classes.WeekDaysContainer}>
+            <WeekDays />
+          </div>
+          <div className={classes.WeekDaysContainer}>
+            <MonthlyDays
+              month={this.state.selectedMonth}
+              year={this.state.selectedYear}
+              onSelectedDay={this.selectedDayHandler}
+              selectedDay={this.state.selectedDay}
+            />
+          </div>
         </div>
       </div>
     );

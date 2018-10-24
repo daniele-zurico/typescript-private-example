@@ -19,6 +19,7 @@ export enum ModalType {
 }
 
 const modal = (props: IProps) => {
+  const overlayRef: any = React.createRef();
   const alertHeaderClass = [classes.Header];
   if (props.type) {
     if (props.type === ModalType.ERROR) {
@@ -49,9 +50,12 @@ const modal = (props: IProps) => {
           exitActive: classes.ModalClose,
         }}
       >
-        <div className={[classes.ModalContent, props.class].join(' ')}>
+        <div
+          ref={overlayRef}
+          className={[classes.ModalContent, props.class].join(' ')}
+        >
           <div className={classes.Close} onClick={props.onDismiss}>
-            X
+            <i className={['material-icons', classes.Icon].join(' ')}>clear</i>
           </div>
           <div className={alertHeaderClass.join(' ')}>{props.header}</div>
           <div className={classes.Content}>{...props.children}</div>

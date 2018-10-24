@@ -22,10 +22,15 @@ export const adminForm = (income: string): IElement => ({
       required: true,
     },
   },
+  recurrent: {
+    component: 'checkbox',
+    id: 3,
+    label: 'Recurrent',
+  },
   confirmBtn: {
     component: 'button',
     disabled: true,
-    id: 3,
+    id: 4,
     label: 'confirm',
     isSubmit: true,
     darkMode: true,

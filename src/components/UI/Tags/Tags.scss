@@ -1,9 +1,7 @@
 .TagContainer {
   display: flex;
-  border: 1px solid #999;
-  border-radius: 13px;
   padding: 2px;
-  justify-content: space-around;
+  justify-content: space-between;
   .Tag {
     width: 24px;
     height: 24px;

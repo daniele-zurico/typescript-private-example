@@ -1,13 +1,48 @@
+@import '~styles/app';
 .CategoriesContainer {
   display: flex;
   flex-direction: row;
   width: 100%;
   flex-wrap: wrap;
   color: #484747;
-  text-transform: capitalize;
+  justify-content: space-between;
 }
 .Fa {
   font-size: 30px;
   padding-bottom: 5px;
   color: white;
+  width: 30px;
+  height: 30px;
+}
+
+.CategoriesContent {
+  width: 46%;
+  border: 0 solid rgba(0, 0, 0, 0);
+  border-radius: 4px;
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.05);
+  margin: 10px;
+  .CategoryHeader {
+    background-color: darkorange;
+    height: 111px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .CategoryBody {
+    display: flex;
+    flex-flow: column;
+    padding: 10px;
+    .InnerBody {
+      display: flex;
+      justify-content: space-between;
+      .InnerLabel {
+        font-weight: bold;
+        text-transform: uppercase;
+      }
+      .InnerValue {
+        font-weight: bold;
+        color: $primary-color;
+      }
+    }
+  }
 }

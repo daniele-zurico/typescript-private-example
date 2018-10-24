@@ -9,9 +9,11 @@
   padding: 0 7px;
 
   .Angle {
-    color: rgba(0, 0, 0, 0.54);
-    font-size: 18px;
+    font-size: 16px;
     cursor: pointer;
     margin-left: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }

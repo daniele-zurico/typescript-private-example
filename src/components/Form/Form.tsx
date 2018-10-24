@@ -1,5 +1,5 @@
 import { isFormValid, validateElement } from 'common/util/util';
-import { Button, Calendar, Input, Select } from 'components';
+import { Button, Calendar, Checkbox, Input, Select } from 'components';
 import * as React from 'react';
 import * as classes from './Form.scss';
 
@@ -22,7 +22,10 @@ class FormElements extends React.Component<IProps, IState> {
     };
   }
 
-  public inputHandler = (evt: React.ChangeEvent<HTMLInputElement>, id: number) => {
+  public inputHandler = (
+    evt: React.ChangeEvent<HTMLInputElement>,
+    id: number
+  ) => {
     // Update the value of the input
     const newForm = this.state.formData.map((el: any) => {
       if (el.id === id && el.element.component !== 'button') {
@@ -50,7 +53,10 @@ class FormElements extends React.Component<IProps, IState> {
     this.props.onSubmit(this.state.formData);
   };
 
-  public showFieldHandler = (evt: React.MouseEvent<HTMLElement>, id: number) => {
+  public showFieldHandler = (
+    evt: React.MouseEvent<HTMLElement>,
+    id: number
+  ) => {
     const updatedValue = this.state.formData.map((el: any) => {
       if (el.id === id) {
         return {
@@ -77,33 +83,44 @@ class FormElements extends React.Component<IProps, IState> {
             ...el.element,
             value: date,
             valid: validateElement(date.toString(), el.element.validation),
-          }
-        }
+          },
+        };
       } else {
         return el;
       }
     });
-    this.setState({ formData: updatedValue, isValid: isFormValid(updatedValue) });
-  }
+    this.setState({
+      formData: updatedValue,
+      isValid: isFormValid(updatedValue),
+    });
+  };
 
   public onSelectedValue = (value: any, id: any) => {
-
     const updatedValue = this.state.formData.map((el: any) => {
       if (el.id === id) {
         return {
           ...el,
           element: {
             ...el.element,
-            value: value.currentTarget.value,
-            valid: validateElement(value.currentTarget.value.toString(), el.element.validation),
-          }
-        }
+            value:
+              el.element.component === 'checkbox'
+                ? value.currentTarget.checked
+                : value.currentTarget.value,
+            valid: validateElement(
+              value.currentTarget.value.toString(),
+              el.element.validation
+            ),
+          },
+        };
       } else {
         return el;
       }
     });
-    this.setState({ formData: updatedValue, isValid: isFormValid(updatedValue) });
-  }
+    this.setState({
+      formData: updatedValue,
+      isValid: isFormValid(updatedValue),
+    });
+  };
 
   public render() {
     const form: any[] = [];
@@ -125,7 +142,7 @@ class FormElements extends React.Component<IProps, IState> {
         valid,
         touched,
         darkMode,
-        data
+        data,
       } = el.element;
 
       switch (component) {
@@ -162,10 +179,11 @@ class FormElements extends React.Component<IProps, IState> {
           break;
         case 'date':
           form.push(
-            <Calendar
-              key={id}
-              onSelectDay={(date) => this.selectDayHandler(date, el.id)}
-            />
+            <div className={classes.FormContainer} key={id}>
+              <Calendar
+                selectedDate={date => this.selectDayHandler(date, el.id)}
+              />
+            </div>
           );
           break;
         case 'select':
@@ -174,7 +192,16 @@ class FormElements extends React.Component<IProps, IState> {
               key={id}
               data={data}
               label={label}
-              onChangeValue={(selValue) => this.onSelectedValue(selValue, el.id)}
+              onChangeValue={selValue => this.onSelectedValue(selValue, el.id)}
+            />
+          );
+          break;
+        case 'checkbox':
+          form.push(
+            <Checkbox
+              key={id}
+              label={label}
+              onChangeValue={selValue => this.onSelectedValue(selValue, el.id)}
             />
           );
           break;

@@ -1,5 +1,5 @@
 export interface IElement {
-  [key: string]: IButton | IInput | IDate | ISelect;
+  [key: string]: IButton | IInput | IDate | ISelect | ICheckbox;
 }
 
 interface IInput {
@@ -44,4 +44,11 @@ interface ISelect {
   id: number;
   data: any[];
   label: string;
+}
+
+interface ICheckbox {
+  component: string;
+  id: number;
+  label: string;
+  onChangeValue: (value: any) => void;
 }

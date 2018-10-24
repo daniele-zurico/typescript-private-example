@@ -4,6 +4,7 @@ export const slideDown: string;
 export const ModalClose: string;
 export const slideUp: string;
 export const Close: string;
+export const Icon: string;
 export const Header: string;
 export const HeaderError: string;
 export const HeaderWarn: string;

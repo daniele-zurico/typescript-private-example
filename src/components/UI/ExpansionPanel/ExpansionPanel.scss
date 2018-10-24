@@ -9,6 +9,7 @@
   cursor: pointer;
 
   &.Open {
+    box-shadow: 2px 2px 9px #b1acac;
     &:first-child {
       margin-top: 0px;
     }

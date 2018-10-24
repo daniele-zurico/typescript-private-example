@@ -19,7 +19,7 @@
     min-height: $input-height + $input-top;
     color: white;
     &.darkLabel {
-      color: #333;
+      color: inherit;
     }
   }
 
@@ -64,10 +64,10 @@
       top: 0;
       cursor: inherit;
       font-size: $placeholder-font-size-small;
-      color: $highlight-color;
+      color: $primary-color;
     }
 
-    border-bottom: 2px solid $highlight-color;
+    border-bottom: 2px solid $primary-color;
   }
 
   .hint {

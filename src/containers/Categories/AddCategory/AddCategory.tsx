@@ -1,5 +1,6 @@
 import { IError } from 'common/interfaces';
 import { Button, Input, Modal, Tags, Type } from 'components';
+import { ModalType } from 'components/UI/Modal/Modal';
 import * as React from 'react';
 import * as classes from './AddCategory.scss';
 
@@ -25,6 +26,7 @@ const addCategory = (props: IProps) => {
       class={classes.Modal}
       header="Add a new Category"
       isOpen={props.isModalOpen}
+      type={ModalType.SUCCESS}
       onDismiss={props.onDismissModal}
     >
       <form className={classes.Form} onSubmit={onCreateCategorySuccess}>
@@ -35,13 +37,9 @@ const addCategory = (props: IProps) => {
           onInputChange={props.onCategoryClick}
           darkMode={true}
         />
+        <label style={{ marginBottom: '5px', fontWeight: 'bold' }}>Tags:</label>
         <Tags tags={props.tags} onSelectedTag={props.onSelectedTag} />
         <div className={classes.ButtonContainer}>
-          <Button
-            type={Type.WARN}
-            label="Cancel"
-            clicked={props.onDismissModal}
-          />
           <Button
             type={Type.PRIMARY}
             label="Confirm"

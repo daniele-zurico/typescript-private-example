@@ -5,8 +5,8 @@ export { default as Modal } from './Modal/Modal';
 export { default as BackDrop } from './BackDrop/BackDrop';
 export { default as Card, CardType } from './Card/Card';
 export { default as Tags } from './Tags/Tags';
-export { default as Calendar } from './Calendar/Calendar';
 export { default as Select } from './Select/Select';
+export { default as Checkbox } from './Checkbox/Checkbox';
 export { default as ExpansionPanel } from './ExpansionPanel/ExpansionPanel';
 
 export {
@@ -28,4 +28,4 @@ export {
   default as ClickableOverlayElement,
 } from './ClickableOverlay/ClickableOverlayElement/ClickableOverlayElement';
 
-export { default as CalendarOverlay } from './CalendarOverlay/CalendarOverlay';
+export { default as Calendar } from './Calendar/Calendar';

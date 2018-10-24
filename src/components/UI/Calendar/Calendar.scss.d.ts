@@ -1,3 +1,3 @@
-export const CalendarContainer: string;
-export const MonthsContainer: string;
-export const DaysContainer: string;
+export const Content: string;
+export const Body: string;
+export const WeekDaysContainer: string;

@@ -1,73 +1,75 @@
 @import '~styles/app';
 .ModalContent {
   background: white;
-  width: 350px;
-  height: 200px;
+  width: 450px;
+  min-height: 200px;
   margin: auto;
   border-radius: 7px;
   padding: 20px;
-  position: fixed;
-  top: calc(50% - 100px);
-  left: calc(50% - 175px);
   z-index: 999999;
 
+  position: fixed;
+  background: white;
+  height: auto;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
   &.ModalOpen {
-    animation: slideDown 1s ease-out forwards;
+    animation: slideDown 0.5s ease-out forwards;
   }
 
   &.ModalClose {
-    animation: slideUp 1s ease-out forwards;
+    animation: slideUp 0.5s ease-out forwards;
   }
 
   @keyframes slideDown {
-    0% {
-      top: -20%;
+    from {
+      top: -300px;
     }
-
-    50% {
-      top: calc(50% - (100px - 20px));
-    }
-
-    100% {
-      top: calc(50% - 100px);
+    to {
+      top: 50%;
     }
   }
 
   @keyframes slideUp {
-    0% {
-      top: calc(50% - 100px);
+    from {
+      top: 50%;
     }
-
-    50% {
-      top: calc(50% - 80px);
-    }
-
-    100% {
-      top: -20%;
+    to {
+      top: -350px;
     }
   }
 
   .Close {
-    width: 25px;
-    height: 25px;
-    background-color: #3a3939;
+    width: 34px;
+    height: 33px;
     border: 2px solid white;
     cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 25px;
-    color: white;
-    float: right;
-    font-size: 10px;
-    margin-top: -29px;
-    margin-right: -29px;
+    float: left;
+    font-size: 13px;
+    margin-top: -6px;
+    margin-left: -9px;
+    margin-right: 4px;
+    font-weight: bold;
+    &:hover {
+      box-shadow: 1px 1px 3px 0px #b3b3b3;
+    }
+    .Icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
   }
 
   .Header {
-    border-bottom: 1px solid #ededed;
     font-weight: 400;
     padding-bottom: 5px;
+    font-weight: bold;
     &.HeaderError {
       color: $warn-color;
     }

@@ -24,6 +24,7 @@ export const authUserEpic = (action$: any) =>
         .pipe(
           map((res: any) => {
             try {
+              debugger;
               const expirationDate = new Date(
                 new Date().getTime() + res.response.expiresIn * 1000
               );
